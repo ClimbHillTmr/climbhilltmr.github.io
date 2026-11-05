@@ -1,0 +1,2635 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Qi Guo · AI 与真实世界</title>
+  <meta name="description" content="Qi Guo，南方科技大学电子信息博士生。研究智能传感、物理 AI、半导体工艺与临床机器学习。了解最新论文与研究项目。">
+  <meta name="theme-color" content="#faf9f5">
+  <link rel="canonical" href="https://climbhilltmr.github.io/">
+  <meta property="og:title" content="Qi Guo · AI for the Physical World">
+  <meta property="og:description" content="Research, publications, and projects at the intersection of machine learning, intelligent sensing, semiconductor modeling, and clinical data science.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://climbhilltmr.github.io/">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600&display=swap');
+
+:root {
+  --bg: #faf9f5;
+  --bg-alt: #f2f0e8;
+  --surface: #fffefa;
+  --surface-subtle: #f5f3eb;
+  --ink: #2c2e28;
+  --ink-secondary: #565a4e;
+  --muted: #6e7364;
+  --accent: #b36549;
+  --accent-hover: #964e35;
+  --accent-soft: #f3e6dc;
+  --sage: #5f7058;
+  --sage-soft: #e6ebe2;
+  --line: #e4e2d8;
+  --line-strong: #d3d0c2;
+  --serif: 'Noto Serif SC', Georgia, 'Songti SC', serif;
+  --sans: 'DM Sans', -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 92px;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
+}
+
+button, input, textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: 0;
+  background: none;
+}
+
+a, button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+:where(a:any-link, button, input, textarea):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+a:hover {
+  color: var(--accent);
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.visually-hidden:where(:not(:focus-within, :active)) {
+  position: absolute !important;
+  clip-path: inset(50%) !important;
+  overflow: hidden !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  white-space: nowrap !important;
+}
+
+.wrap {
+  width: min(1180px, calc(100% - 96px));
+  margin: 0 auto;
+}
+
+.skip {
+  position: fixed;
+  left: 20px;
+  top: -100px;
+  background: var(--surface);
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  z-index: 100;
+  box-shadow: 0 8px 24px #2c2e281a;
+}
+
+.skip:focus {
+  top: 14px;
+}
+
+/* Header & Navigation */
+.site-header {
+  background: #faf9f5eb;
+  border-bottom: 1px solid var(--line);
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.nav-wrap {
+  width: min(1240px, calc(100% - 80px));
+  height: 78px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+}
+
+.wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  min-block-size: 36px;
+}
+
+.wordmark:hover {
+  color: var(--ink);
+}
+
+.asterisk {
+  font-size: 30px;
+  font-family: Georgia, serif;
+  color: var(--accent);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.wordmark strong {
+  font: 500 22px Georgia, serif;
+  letter-spacing: -0.01em;
+}
+
+.wordmark-tag {
+  border-left: 1px solid var(--line-strong);
+  padding-left: 12px;
+  margin-left: 2px;
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.03em;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+nav a {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--ink-secondary);
+  padding: 6px 2px;
+  min-block-size: 28px;
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+}
+
+nav a.active {
+  color: var(--accent);
+}
+
+nav a.active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 1.5px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.lang-switch {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 6px 11px;
+  min-block-size: 32px;
+  min-inline-size: 36px;
+  border: 1px solid var(--line-strong);
+  border-radius: 6px;
+  color: var(--ink-secondary);
+  background: var(--surface);
+  transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.lang-switch:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.github-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12.5px;
+  font-weight: 500;
+  padding: 6px 12px;
+  min-block-size: 32px;
+  border-radius: 6px;
+  border: 1px solid var(--line-strong);
+  background: var(--surface-subtle);
+  color: var(--ink);
+}
+
+.github-nav:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent-hover);
+}
+
+.gh-icon {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+.ext-arrow {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+/* Hero Section */
+.hero {
+  display: grid;
+  grid-template-columns: 1.28fr 1fr;
+  gap: 52px;
+  padding-top: 76px;
+  padding-bottom: 72px;
+  align-items: center;
+}
+
+.eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+  margin: 0 0 18px;
+  text-transform: uppercase;
+}
+
+.hero .eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.hero h1 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(2.25rem, 3.1vw + 1rem, 3.2rem);
+  line-height: 1.48;
+  letter-spacing: 0.01em;
+  margin: 0 0 22px;
+  color: var(--ink);
+}
+
+.hero h1 em {
+  color: var(--accent);
+  font-style: normal;
+}
+
+.hero-intro {
+  color: var(--ink-secondary);
+  font-size: 15px;
+  line-height: 1.95;
+  max-width: 540px;
+  margin: 0 0 30px;
+}
+
+.hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 1px solid var(--line-strong);
+  border-radius: 7px;
+  padding: 11px 20px;
+  min-block-size: 42px;
+  font-size: 13.5px;
+  font-weight: 500;
+  background: var(--surface);
+  color: var(--ink);
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
+}
+
+.button:hover {
+  border-color: var(--ink-secondary);
+  background: var(--bg-alt);
+  color: var(--ink);
+}
+
+.button.primary {
+  background: var(--accent);
+  color: #fffaf4;
+  border-color: var(--accent);
+}
+
+.button.primary:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+  color: #ffffff;
+}
+
+.button.secondary {
+  background: var(--surface);
+  color: var(--ink-secondary);
+}
+
+.button.secondary:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.hero-meta {
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  font-size: 12.5px;
+  color: var(--muted);
+}
+
+.meta-sep {
+  color: var(--line-strong);
+}
+
+.hero-gh-link {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--accent);
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: var(--accent-soft);
+}
+
+.hero-gh-link:hover {
+  background: #ead5c5;
+  color: var(--accent-hover);
+}
+
+.hero-visual {
+  position: relative;
+}
+
+.visual-card {
+  background: var(--surface-subtle);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 18px 20px 16px;
+  box-shadow: 0 12px 36px #2c2e280a;
+}
+
+.visual-kicker {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.visual-badge {
+  font-family: var(--mono);
+  font-size: 10px;
+  padding: 2px 7px;
+  border-radius: 4px;
+  background: #eae7dc;
+  color: var(--ink-secondary);
+}
+
+.visual-card > svg {
+  display: block;
+  width: 100%;
+  max-height: 330px;
+}
+
+.visual-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8px;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+
+/* Research Domain Strip */
+.research-strip {
+  border-block: 1px solid var(--line);
+  background: var(--bg-alt);
+}
+
+.research-strip > .wrap {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  padding-block: 16px;
+}
+
+.research-strip a {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.11em;
+  color: var(--ink-secondary);
+  padding: 6px 8px;
+  border-radius: 6px;
+}
+
+.research-strip a span {
+  font-family: Georgia, serif;
+  font-size: 11px;
+  color: var(--accent);
+}
+
+.research-strip a:hover {
+  color: var(--accent);
+  background: #e9e6dc;
+}
+
+/* Generic Sections */
+.section {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.section-top {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 32px;
+  margin-bottom: 40px;
+}
+
+.section-top .eyebrow {
+  margin-bottom: 12px;
+}
+
+.section h2 {
+  font-family: var(--serif);
+  font-size: clamp(1.6rem, 2vw + 0.85rem, 2.05rem);
+  letter-spacing: 0.01em;
+  line-height: 1.5;
+  font-weight: 400;
+  margin: 0;
+  color: var(--ink);
+}
+
+.section-note {
+  font-size: 13.5px;
+  line-height: 1.8;
+  color: var(--muted);
+  max-width: 310px;
+  margin: 0;
+}
+
+.pill-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-secondary);
+  white-space: nowrap;
+  padding: 8px 14px;
+  min-block-size: 36px;
+  border: 1px solid var(--line-strong);
+  border-radius: 6px;
+  background: var(--surface);
+}
+
+.pill-link:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+/* 01 Research Grid */
+.research-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.research-item {
+  position: relative;
+  padding: 24px 22px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.research-item:hover {
+  border-color: var(--line-strong);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px #2c2e280a;
+}
+
+.research-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.research-icon {
+  width: 40px;
+  height: 40px;
+  background: var(--surface-subtle);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--accent);
+  display: grid;
+  place-items: center;
+  font-size: 21px;
+}
+
+.item-index {
+  font-size: 12px;
+  color: var(--muted);
+  font-family: Georgia, serif;
+}
+
+.research-item h3 {
+  font-weight: 600;
+  font-size: 15.5px;
+  line-height: 1.5;
+  margin: 0 0 12px;
+  color: var(--ink);
+}
+
+.research-item p {
+  font-size: 13.5px;
+  line-height: 1.85;
+  color: var(--ink-secondary);
+  margin: 0 0 20px;
+  flex: 1;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tags span {
+  font-size: 11.5px;
+  padding: 4px 9px;
+  background: var(--surface-subtle);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  color: var(--ink-secondary);
+  line-height: 1.4;
+}
+
+/* 02 Publications */
+.publications {
+  background: #f2f0e7;
+  border-block: 1px solid var(--line);
+}
+
+.featured-paper {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  background: var(--surface);
+  border: 1px solid var(--line-strong);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 36px;
+  box-shadow: 0 10px 30px #2c2e2808;
+}
+
+.paper-art {
+  background: #e8e4d6;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 290px;
+  overflow: hidden;
+  border-right: 1px solid var(--line);
+}
+
+.paper-art::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(#b5ad96 1px, transparent 1px);
+  background-size: 16px 16px;
+  opacity: 0.4;
+}
+
+.chip {
+  display: grid;
+  grid-template-columns: repeat(2, 50px);
+  gap: 9px;
+  padding: 17px;
+  background: #d8d3c4;
+  transform: rotate(-16deg);
+  border: 1px solid #bfb7a1;
+  box-shadow: 9px 13px 0 #c6bfab66;
+  z-index: 1;
+  margin-top: -26px;
+}
+
+.chip > span {
+  height: 50px;
+  border: 4px solid #e4ddcb;
+  outline: 1px solid #aba185;
+  position: relative;
+  background: repeating-linear-gradient(90deg, transparent, transparent 4px, #f2e0c5 4px, #f2e0c5 6px);
+}
+
+.chip > span:nth-child(1) { background-color: #b88763; }
+.chip > span:nth-child(2) { background-color: #9a9e7d; }
+.chip > span:nth-child(3) { background-color: #b5a377; }
+.chip > span:nth-child(4) { background-color: #899e94; }
+
+.signal {
+  position: absolute;
+  bottom: 40px;
+  right: -8px;
+  width: 165px;
+  opacity: 0.78;
+}
+
+.signal svg {
+  fill: none;
+  stroke: #9e6d50;
+  stroke-width: 1.4;
+}
+
+.art-label {
+  position: absolute;
+  bottom: 18px;
+  left: 22px;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: #6f6b58;
+}
+
+.featured-copy {
+  padding: 30px 34px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.paper-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 12.5px;
+  color: var(--muted);
+}
+
+.journal-pill {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--accent-hover);
+  padding: 4px 10px;
+  background: var(--accent-soft);
+  border: 1px solid #e6d1c0;
+  border-radius: 4px;
+}
+
+.role-pill {
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--sage);
+  padding: 4px 9px;
+  background: var(--sage-soft);
+  border: 1px solid #d3ddd0;
+  border-radius: 4px;
+}
+
+.latest {
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--muted);
+  margin-left: auto;
+}
+
+.featured-copy h3 {
+  font: 400 21px/1.48 Georgia, serif;
+  margin: 16px 0 12px;
+  max-width: 740px;
+  color: var(--ink);
+}
+
+.authors {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.author-self {
+  color: var(--ink);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: #cca08d;
+  text-underline-offset: 3px;
+}
+
+.paper-summary {
+  font-size: 13.5px;
+  line-height: 1.85;
+  color: var(--ink-secondary);
+  margin: 14px 0 20px;
+}
+
+.paper-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  font-size: 12.5px;
+}
+
+.action-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 13px;
+  min-block-size: 32px;
+  border-radius: 6px;
+  border: 1px solid var(--line-strong);
+  background: var(--surface-subtle);
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--ink-secondary);
+}
+
+.action-pill:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.action-pill.primary-link {
+  background: var(--accent-soft);
+  border-color: #e2c6b3;
+  color: var(--accent-hover);
+}
+
+.action-pill.primary-link:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.publication-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--line-strong);
+}
+
+.filter-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 6px;
+  padding: 7px 13px;
+  min-block-size: 34px;
+  color: var(--ink-secondary);
+  border: 1px solid transparent;
+  transition: background-color 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.filter:hover {
+  background: #e7e4d8;
+  color: var(--ink);
+}
+
+.filter.active {
+  background: var(--surface);
+  border-color: var(--line-strong);
+  color: var(--ink);
+  box-shadow: 0 1px 3px #2c2e280d;
+}
+
+.filter-count {
+  font-size: 11px;
+  padding: 1px 6px;
+  border-radius: 10px;
+  background: var(--bg-alt);
+  color: var(--muted);
+}
+
+.filter.active .filter-count {
+  background: var(--accent-soft);
+  color: var(--accent-hover);
+}
+
+.paper-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--surface);
+  border: 1px solid var(--line-strong);
+  border-radius: 7px;
+  padding: 4px 11px;
+  min-block-size: 36px;
+  color: var(--muted);
+}
+
+.paper-search:focus-within {
+  border-color: var(--accent);
+}
+
+.search-icon {
+  font-size: 17px;
+  line-height: 1;
+}
+
+.paper-search input {
+  width: 210px;
+  border: 0;
+  background: none;
+  outline: none;
+  padding: 4px 2px;
+  font-size: 13px;
+  color: var(--ink);
+}
+
+.paper-search input::placeholder {
+  color: var(--muted);
+}
+
+.search-kbd {
+  font-family: var(--mono);
+  font-size: 11px;
+  padding: 1px 6px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  color: var(--muted);
+  background: var(--surface-subtle);
+}
+
+.paper-row {
+  display: grid;
+  grid-template-columns: 64px 1fr 32px;
+  gap: 18px;
+  padding: 26px 8px;
+  border-bottom: 1px solid var(--line-strong);
+  transition: background-color 0.15s ease;
+}
+
+.paper-row:hover {
+  background: #f7f5ed;
+}
+
+.paper-row > time {
+  font: 400 16px Georgia, serif;
+  color: var(--muted);
+  padding-top: 2px;
+}
+
+.paper-row-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.paper-journal {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--sage);
+}
+
+.paper-tag {
+  font-size: 11px;
+  padding: 1px 7px;
+  border-radius: 4px;
+  background: var(--accent-soft);
+  color: var(--accent-hover);
+}
+
+.paper-row h3 {
+  font: 400 17.5px/1.52 Georgia, serif;
+  margin: 8px 0;
+  color: var(--ink);
+}
+
+.paper-row p {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.7;
+  margin: 0 0 12px;
+}
+
+.paper-row .paper-actions a,
+.paper-row .paper-actions button {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 10px;
+  min-block-size: 28px;
+  border-radius: 5px;
+  border: 1px solid var(--line-strong);
+  background: var(--surface);
+  color: var(--ink-secondary);
+  display: inline-flex;
+  align-items: center;
+}
+
+.paper-row .paper-actions a {
+  color: var(--accent-hover);
+  border-color: #e2c9b8;
+  background: #fbf5ef;
+}
+
+.paper-row .paper-actions a:hover,
+.paper-row .paper-actions button:hover {
+  border-color: var(--accent);
+  color: var(--accent-hover);
+  background: var(--accent-soft);
+}
+
+.pub-number {
+  font-family: Georgia, serif;
+  font-size: 12px;
+  color: var(--muted);
+  text-align: right;
+  padding-top: 3px;
+}
+
+.publication-foot {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 12.5px;
+  color: var(--muted);
+  margin-top: 20px;
+}
+
+.empty {
+  padding: 36px 20px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 14px;
+  background: var(--surface);
+  border: 1px dashed var(--line-strong);
+  border-radius: 8px;
+  margin-top: 16px;
+}
+
+/* 03 Projects Grid */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 26px;
+}
+
+.project {
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  overflow: hidden;
+  background: var(--surface);
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.project:hover {
+  border-color: var(--line-strong);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px #2c2e280c;
+}
+
+.project-visual {
+  height: 178px;
+  position: relative;
+  overflow: hidden;
+  padding: 20px 24px;
+  background: #eeeee4;
+  border-bottom: 1px solid var(--line);
+}
+
+.terminal-label {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  opacity: 0.8;
+}
+
+.visual-detail {
+  position: absolute;
+  bottom: 14px;
+  left: 24px;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  opacity: 0.72;
+}
+
+.gateway {
+  background: #e6eae2;
+  color: #546651;
+}
+
+.gateway-flow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 26px;
+  gap: 18px;
+}
+
+.gateway-flow span {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  border: 1px solid #b5c2ae;
+  background: #f2f5ef;
+  padding: 12px 16px;
+  border-radius: 6px;
+}
+
+.gateway-flow i {
+  font-style: normal;
+  color: #84967f;
+}
+
+.lithography {
+  background: #eee6db;
+  color: #8c6448;
+}
+
+.lithography svg {
+  display: block;
+  position: absolute;
+  inset: 28px 40px auto;
+  width: calc(100% - 80px);
+  height: 132px;
+  fill: none;
+  stroke: #b08562;
+  stroke-width: 1.15;
+}
+
+.droplet {
+  background: #e4eae6;
+  color: #53786e;
+}
+
+.droplet-grid {
+  position: absolute;
+  left: 50%;
+  top: 52%;
+  transform: translate(-50%, -50%) rotate(-8deg);
+  display: grid;
+  grid-template-columns: repeat(4, 34px);
+  gap: 5px;
+}
+
+.droplet-grid span {
+  height: 28px;
+  border: 1px solid #b2c5b8;
+  border-radius: 3px;
+  background: #edf3ef;
+}
+
+.droplet-grid i {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  left: 42px;
+  top: 29px;
+  background: #809e93;
+  border: 3px solid #d5e3db;
+  border-radius: 48% 45% 50% 42%;
+  box-shadow: 0 2px 8px #53786e26;
+}
+
+.droplet-grid i:last-child {
+  width: 23px;
+  height: 23px;
+  left: 118px;
+  top: 3px;
+  background: #a5b38e;
+}
+
+.clinical {
+  background: #efe5df;
+  color: #9b6e56;
+}
+
+.clinical svg {
+  position: absolute;
+  top: 25px;
+  left: 45px;
+  width: calc(100% - 90px);
+  height: 125px;
+  stroke: #b0826b;
+  stroke-width: 1.25;
+  fill: none;
+}
+
+.clinical svg > g {
+  stroke: #c4ad9d;
+  stroke-width: 0.85;
+}
+
+.project-copy {
+  padding: 24px 26px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.project-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+
+.project-status {
+  color: var(--sage);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.project-status::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  display: inline-block;
+  border-radius: 50%;
+  background: var(--sage);
+  margin-right: 7px;
+  vertical-align: middle;
+}
+
+.project-status.neutral {
+  color: #8c7759;
+}
+
+.project-status.neutral::before {
+  background: #a88f6b;
+}
+
+.repo-slug {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  background: var(--surface-subtle);
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--line);
+}
+
+.project h3 {
+  font-size: 17.5px;
+  font-weight: 600;
+  line-height: 1.45;
+  margin: 0 0 10px;
+  color: var(--ink);
+}
+
+.project p {
+  font-size: 13.5px;
+  color: var(--ink-secondary);
+  line-height: 1.85;
+  margin: 0 0 18px;
+  flex: 1;
+}
+
+.project .tags {
+  margin-bottom: 20px;
+}
+
+.project-actions {
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+
+.project-link {
+  font-size: 13px;
+  font-weight: 500;
+  padding: 4px 0;
+  min-block-size: 28px;
+  color: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.project-link:hover {
+  color: var(--accent-hover);
+}
+
+/* 04 About & Methodology */
+.about {
+  border-block: 1px solid var(--line);
+  background: var(--bg-alt);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 72px;
+  align-items: start;
+}
+
+.about .eyebrow {
+  margin-bottom: 14px;
+}
+
+.about-description {
+  font-size: 14.5px;
+  line-height: 1.95;
+  color: var(--ink-secondary);
+  margin: 20px 0 28px;
+  max-width: 540px;
+}
+
+.principles-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.principle-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 14px 15px;
+}
+
+.principle-card strong {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+
+.principle-card span {
+  display: block;
+  font-size: 12px;
+  line-height: 1.65;
+  color: var(--muted);
+}
+
+.education {
+  display: grid;
+  gap: 26px;
+  border-left: 1px solid var(--line-strong);
+  padding-left: 30px;
+}
+
+.education > div {
+  position: relative;
+}
+
+.education > div::before {
+  content: '';
+  height: 9px;
+  width: 9px;
+  background: #b4b9a5;
+  border-radius: 50%;
+  position: absolute;
+  left: -35px;
+  top: 5px;
+  border: 2px solid var(--bg-alt);
+}
+
+.education > div:first-child::before {
+  background: var(--accent);
+}
+
+.edu-period {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.education h3 {
+  font-size: 15.5px;
+  font-weight: 600;
+  line-height: 1.5;
+  margin: 6px 0 4px;
+  color: var(--ink);
+}
+
+.education p {
+  font-size: 13.5px;
+  color: var(--ink-secondary);
+  margin: 0 0 4px;
+  line-height: 1.6;
+}
+
+.education small {
+  display: block;
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* Contact CTA */
+.contact {
+  text-align: center;
+  padding-top: 72px;
+  padding-bottom: 76px;
+}
+
+.contact .asterisk {
+  font-size: 34px;
+  display: block;
+  margin-bottom: 18px;
+}
+
+.contact h2 {
+  font: 400 clamp(1.6rem, 2vw + 0.85rem, 2.05rem)/1.55 var(--serif);
+  margin: 0 0 12px;
+}
+
+.contact p {
+  font-size: 14px;
+  color: var(--ink-secondary);
+  line-height: 1.85;
+  max-width: 520px;
+  margin: 0 auto 28px;
+}
+
+.contact-actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+/* Footer */
+.site-footer {
+  padding-top: 26px;
+  padding-bottom: 30px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--muted);
+  font-size: 12.5px;
+  gap: 20px;
+}
+
+.footer-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font: 500 16px Georgia, serif;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.footer-brand .asterisk {
+  font-size: 20px;
+}
+
+.footer-motto {
+  color: var(--muted);
+}
+
+.footer-links {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12.5px;
+}
+
+/* Dialogs & Toast */
+dialog {
+  border: 1px solid var(--line-strong);
+  border-radius: 12px;
+  width: min(660px, calc(100% - 32px));
+  padding: 28px 30px;
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: 0 25px 80px #2c2e2833;
+  max-height: 85dvh;
+  overflow: auto;
+}
+
+dialog::backdrop {
+  background: #2c2e2855;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.dialog-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.dialog-head .eyebrow {
+  margin-bottom: 6px;
+}
+
+.dialog-head h2 {
+  font: 400 22px/1.45 var(--serif);
+  margin: 0;
+}
+
+.close-dialog {
+  font-size: 24px;
+  line-height: 1;
+  color: var(--muted);
+  padding: 4px 8px;
+  min-block-size: 32px;
+  min-inline-size: 32px;
+  border-radius: 6px;
+}
+
+.close-dialog:hover {
+  background: var(--bg-alt);
+  color: var(--ink);
+}
+
+.dialog-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  margin-top: 18px;
+  font-size: 13px;
+  color: var(--sage);
+}
+
+#citation-text {
+  width: 100%;
+  min-height: 230px;
+  border: 1px solid var(--line-strong);
+  padding: 16px;
+  border-radius: 8px;
+  background: var(--surface-subtle);
+  resize: vertical;
+  font: 12.5px/1.75 var(--mono);
+  color: var(--ink);
+}
+
+#project-detail {
+  font-size: 14px;
+  line-height: 1.9;
+  color: var(--ink-secondary);
+}
+
+#project-detail p {
+  margin: 0 0 14px;
+}
+
+#project-detail ul {
+  margin: 12px 0 16px;
+  padding-left: 20px;
+}
+
+#project-detail li {
+  margin-bottom: 6px;
+}
+
+#project-detail .detail-note {
+  font-size: 12.5px;
+  color: var(--ink-secondary);
+  background: var(--surface-subtle);
+  border-left: 3px solid var(--accent);
+  padding: 12px 16px;
+  border-radius: 4px;
+  margin-top: 16px;
+}
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 26px;
+  transform: translateX(-50%);
+  background: #2c2e28;
+  color: #faf9f5;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  box-shadow: 0 10px 30px #0000002e;
+  z-index: 60;
+}
+
+.menu {
+  display: none;
+  min-block-size: 34px;
+  min-inline-size: 34px;
+  border: 1px solid var(--line-strong);
+  border-radius: 6px;
+  background: var(--surface);
+}
+
+.menu > span {
+  width: 16px;
+  height: 1.5px;
+  background: var(--ink);
+  display: block;
+  margin: 4px auto;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1100px) {
+  .wrap, .nav-wrap {
+    width: calc(100% - 64px);
+  }
+  .hero {
+    gap: 32px;
+    padding-block: 60px;
+  }
+  .research-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .featured-paper {
+    grid-template-columns: 230px 1fr;
+  }
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 44px;
+  }
+}
+
+@media (max-width: 820px) {
+  .wrap, .nav-wrap {
+    width: calc(100% - 44px);
+  }
+  .wordmark-tag {
+    display: none;
+  }
+  nav {
+    gap: 18px;
+  }
+  .hero {
+    grid-template-columns: 1fr;
+    padding-block: 48px;
+  }
+  .hero-intro {
+    max-width: 100%;
+  }
+  .research-strip > .wrap {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .section {
+    padding-block: 60px;
+  }
+  .section-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .section-note {
+    max-width: 100%;
+  }
+  .featured-paper {
+    grid-template-columns: 1fr;
+  }
+  .paper-art {
+    min-height: 200px;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .publication-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .paper-search input {
+    width: 100%;
+  }
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+  .principles-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  html {
+    scroll-padding-top: 76px;
+  }
+  .wrap, .nav-wrap {
+    width: calc(100% - 32px);
+  }
+  .nav-wrap {
+    height: 68px;
+  }
+  .github-nav span:not(.ext-arrow) {
+    display: none;
+  }
+  .menu {
+    display: inline-block;
+  }
+  nav {
+    display: none;
+    position: absolute;
+    top: 68px;
+    left: 0;
+    right: 0;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line-strong);
+    padding: 16px 20px;
+    box-shadow: 0 12px 24px #2c2e2814;
+    justify-content: space-around;
+  }
+  nav.open {
+    display: flex;
+  }
+  .research-grid {
+    grid-template-columns: 1fr;
+  }
+  .research-strip > .wrap {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .research-strip a {
+    font-size: 10.5px;
+  }
+  .featured-copy {
+    padding: 22px;
+  }
+  .paper-row {
+    grid-template-columns: 44px 1fr;
+    gap: 12px;
+    padding: 22px 4px;
+  }
+  .pub-number {
+    display: none;
+  }
+  .site-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  dialog {
+    padding: 22px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+  </style>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Qi Guo","url":"https://climbhilltmr.github.io/","affiliation":{"@type":"CollegeOrUniversity","name":"Southern University of Science and Technology"},"sameAs":["https://github.com/ClimbHillTmr"],"knowsAbout":["Machine Learning","Gas Sensing","Semiconductor Process Modeling","Clinical Data Science","Digital Microfluidics"]}</script>
+</head>
+<body>
+<a class="skip" href="#main" data-zh="跳至主要内容" data-en="Skip to main content">跳至主要内容</a>
+
+<header class="site-header">
+  <div class="nav-wrap">
+    <a class="wordmark" href="#home" aria-label="Qi Guo">
+      <span class="asterisk" aria-hidden="true">✳</span>
+      <strong>Qi Guo</strong>
+      <span class="wordmark-tag" data-zh="学术主页" data-en="Research">学术主页</span>
+    </a>
+    <nav id="nav" aria-label="Primary">
+      <a href="#research" data-zh="研究方向" data-en="Research">研究方向</a>
+      <a href="#publications" data-zh="发表论文" data-en="Publications">发表论文</a>
+      <a href="#projects" data-zh="研究项目" data-en="Projects">研究项目</a>
+      <a href="#about" data-zh="关于" data-en="About">关于</a>
+    </nav>
+    <div class="nav-actions">
+      <button id="language" type="button" class="lang-switch" aria-label="Switch to English">EN</button>
+      <a href="https://github.com/ClimbHillTmr" target="_blank" rel="noopener noreferrer" class="github-nav" aria-label="GitHub @ClimbHillTmr">
+        <svg class="gh-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.42 7.42 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+        <span>@ClimbHillTmr</span>
+        <span class="ext-arrow" aria-hidden="true">↗</span>
+      </a>
+      <button id="menu" type="button" class="menu" aria-label="切换导航" aria-expanded="false" aria-controls="nav">
+        <span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+  <section id="home" class="hero wrap">
+    <div class="hero-copy">
+      <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> QI GUO · RESEARCH &amp; ENGINEERING</p>
+      <h1>
+        <span data-zh="让 AI 走进" data-en="Bringing AI into">让 AI 走进</span><br>
+        <em data-zh="真实的物理世界。" data-en="the physical world.">真实的物理世界。</em>
+      </h1>
+      <p class="hero-intro" data-zh="我是 Qi Guo，南方科技大学电子信息博士生。以统计学与机器学习为工具，探索智能传感、半导体制造与临床医疗中的真实问题，在物理先验、实验数据与可验证系统之间建立连接。" data-en="I’m Qi Guo, a doctoral student in Electronic Information at SUSTech. I use statistics and machine learning to study real-world problems across intelligent sensing, semiconductor manufacturing, and clinical medicine—bridging physical priors, empirical data, and verifiable systems.">我是 Qi Guo，南方科技大学电子信息博士生。以统计学与机器学习为工具，探索智能传感、半导体制造与临床医疗中的真实问题，在物理先验、实验数据与可验证系统之间建立连接。</p>
+      <div class="hero-buttons">
+        <a class="button primary" href="#publications">
+          <span data-zh="阅读最新论文" data-en="Explore publications">阅读最新论文</span>
+          <span aria-hidden="true">↓</span>
+        </a>
+        <a class="button secondary" href="#projects">
+          <span data-zh="浏览研究与开源项目" data-en="Research &amp; open-source projects">浏览研究与开源项目</span>
+          <span aria-hidden="true">↓</span>
+        </a>
+      </div>
+      <div class="hero-meta">
+        <span class="affiliation" data-zh="南方科技大学 · 半导体学院（国家卓越工程师学院）" data-en="SUSTech · College of Semiconductors (National Graduate College for Engineers)">南方科技大学 · 半导体学院（国家卓越工程师学院）</span>
+        <span class="meta-sep" aria-hidden="true">·</span>
+        <a class="hero-gh-link" href="https://github.com/ClimbHillTmr" target="_blank" rel="noopener noreferrer">github.com/ClimbHillTmr ↗</a>
+      </div>
+    </div>
+
+    <div class="hero-visual" aria-hidden="true">
+      <div class="visual-card">
+        <div class="visual-kicker">
+          <span>PATTERNS · PRINCIPLES · POSSIBILITIES</span>
+          <span class="visual-badge">SYS.01</span>
+        </div>
+        <svg viewBox="0 0 420 350" fill="none">
+          <defs>
+            <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+              <circle cx="1" cy="1" r=".8" fill="#c9c2b2"/>
+            </pattern>
+            <linearGradient id="surface" x1="85" y1="95" x2="320" y2="285" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#d98a63"/>
+              <stop offset="0.55" stop-color="#b36549"/>
+              <stop offset="1" stop-color="#6e8268"/>
+            </linearGradient>
+          </defs>
+          <rect x="24" y="14" width="372" height="320" rx="6" fill="url(#grid)"/>
+          <g stroke="#bfb7a4" stroke-width=".85">
+            <path d="m68 205 142 80 142-81-141-79Z"/>
+            <path d="m68 220 142 80 142-81M68 235l142 80 142-81"/>
+            <path d="M68 205v30m142 50v30m142-111v30"/>
+          </g>
+          <g stroke="url(#surface)" stroke-width="1.25" opacity=".95">
+            <path d="m76 198 14-2 14-6 14-19 14-29 14-12 14 12 14 23 14 21 14 8 14-7 14-28 14-17 14 8 14 29 14 22 14 6 14-3 14-7"/>
+            <path d="m85 204 14-2 14-6 14-19 14-29 14-12 14 12 14 23 14 21 14 8 14-7 14-28 14-17 14 8 14 29 14 22 14 6 14-3 14-7"/>
+            <path d="m94 210 14-2 14-6 14-19 14-29 14-12 14 12 14 23 14 21 14 8 14-7 14-28 14-17 14 8 14 29 14 22 14 6 14-3 14-7"/>
+            <path d="m103 216 14-2 14-6 14-19 14-29 14-12 14 12 14 23 14 21 14 8 14-7 14-28 14-17 14 8 14 29 14 22 14 6 14-3"/>
+            <path d="m112 222 14-2 14-6 14-19 14-29 14-12 14 12 14 23 14 21 14 8 14-7 14-28 14-17 14 8 14 29 14 22 14 6"/>
+            <path d="m121 228 14-2 14-6 14-19 14-29 14-12 14 12 14 23 14 21 14 8 14-7 14-28 14-17 14 8 14 29 14 22"/>
+            <path d="m130 234 14-2 14-6 14-19 14-29 14-12 14 12 14 23 14 21 14 8 14-7 14-28 14-17 14 8 14 29"/>
+            <path d="m139 240 14-2 14-6 14-19 14-29 14-12 14 12 14 23 14 21 14 8 14-7 14-28 14-17 14 8"/>
+            <path d="m148 246 14-2 14-6 14-19 14-29 14-12 14 12 14 23 14 21 14 8 14-7 14-28 14-17"/>
+            <path d="m157 252 14-2 14-6 14-19 14-29 14-12 14 12 14 23 14 21 14 8 14-7 14-28"/>
+            <path d="m166 258 14-2 14-6 14-19 14-29 14-12 14 12 14 23 14 21 14 8 14-7"/>
+            <path d="m175 264 14-2 14-6 14-19 14-29 14-12 14 12 14 23 14 21 14 8"/>
+            <path d="m184 270 14-2 14-6 14-19 14-29 14-12 14 12 14 23 14 21"/>
+          </g>
+          <g stroke="#b36549" stroke-width="1.2">
+            <path d="M134 62v14m-7-7h14m-12-5 10 10m0-10-10 10"/>
+            <path d="m264 120 22-34 40-7" stroke-dasharray="3 4"/>
+          </g>
+          <circle cx="264" cy="120" r="4.5" fill="#b36549"/>
+          <circle cx="210" cy="285" r="3.5" fill="#6e8268"/>
+          <g fill="#78776a" font-family="Georgia, serif" font-size="9.5" letter-spacing="1.2">
+            <text x="256" y="68">PHYSICAL PRIORS</text>
+            <text x="42" y="282">REPRESENTATION</text>
+            <text x="272" y="312">VERIFICATION</text>
+          </g>
+        </svg>
+        <div class="visual-foot">
+          <span>OBSERVATION → MODELING → EVIDENCE</span>
+          <span>SUSTech · SHENZHEN</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="research-strip" aria-label="Research domains">
+    <div class="wrap">
+      <a href="#research"><span>01</span> INTELLIGENT SENSING</a>
+      <a href="#research"><span>02</span> SEMICONDUCTOR PHYSICS</a>
+      <a href="#research"><span>03</span> CLINICAL MACHINE LEARNING</a>
+      <a href="#research"><span>04</span> MICROFLUIDIC SYSTEMS</a>
+    </div>
+  </div>
+
+  <section id="research" class="wrap section">
+    <div class="section-top">
+      <div>
+        <p class="eyebrow">01 / RESEARCH INTERESTS</p>
+        <h2 data-zh="不同的场景，共同的科学问题。" data-en="Different domains. Shared scientific questions.">不同的场景，共同的科学问题。</h2>
+      </div>
+      <p class="section-note" data-zh="从真实物理与临床场景出发，连接领域机理、统计学习与严谨验证。" data-en="Starting from physical and clinical reality to connect domain mechanisms, statistical learning, and rigorous validation.">从真实物理与临床场景出发，连接领域机理、统计学习与严谨验证。</p>
+    </div>
+
+    <div class="research-grid">
+      <article class="research-item">
+        <div class="research-card-head">
+          <div class="research-icon" aria-hidden="true">◎</div>
+          <span class="item-index">01</span>
+        </div>
+        <h3 data-zh="智能传感与表征学习" data-en="Intelligent sensing &amp; representations">智能传感与表征学习</h3>
+        <p data-zh="研究气体传感阵列的温度调制、动力学响应、长期漂移与跨条件泛化，关注预测性能背后的物理可观测性与评估边界。" data-en="Studying temperature modulation, dynamic response, long-term drift, and cross-condition generalization in gas sensor arrays with strict evaluation boundaries.">研究气体传感阵列的温度调制、动力学响应、长期漂移与跨条件泛化，关注预测性能背后的物理可观测性与评估边界。</p>
+        <div class="tags">
+          <span>MEMS gas sensing</span>
+          <span>Physics-informed DL</span>
+          <span>Drift recovery</span>
+        </div>
+      </article>
+
+      <article class="research-item">
+        <div class="research-card-head">
+          <div class="research-icon" aria-hidden="true">▧</div>
+          <span class="item-index">02</span>
+        </div>
+        <h3 data-zh="半导体工艺与物理建模" data-en="Semiconductors &amp; physical modeling">半导体工艺与物理建模</h3>
+        <p data-zh="探索先进光刻、刻蚀与纳米压印中的多物理场蒙特卡洛模拟、统计建模与逆向优化，连接工艺参数与可解释的微观物理过程。" data-en="Exploring multiphysics Monte Carlo simulation, statistical modeling, and optimization for lithography, etching, and nanoimprint processes.">探索先进光刻、刻蚀与纳米压印中的多物理场蒙特卡洛模拟、统计建模与逆向优化，连接工艺参数与可解释的微观物理过程。</p>
+        <div class="tags">
+          <span>Helium ion lithography</span>
+          <span>Monte Carlo</span>
+          <span>Process optimization</span>
+        </div>
+      </article>
+
+      <article class="research-item">
+        <div class="research-card-head">
+          <div class="research-icon" aria-hidden="true">⌁</div>
+          <span class="item-index">03</span>
+        </div>
+        <h3 data-zh="临床机器学习" data-en="Clinical machine learning">临床机器学习</h3>
+        <p data-zh="围绕血液透析血流动力学不稳定性、血红蛋白与远期预后开展纵向建模，坚持患者级划分、时间因果边界与多中心外部验证。" data-en="Longitudinal modeling of hemodialysis instability, hemoglobin, and outcomes—enforcing patient-level splits, temporal causality, and multicenter validation.">围绕血液透析血流动力学不稳定性、血红蛋白与远期预后开展纵向建模，坚持患者级划分、时间因果边界与多中心外部验证。</p>
+        <div class="tags">
+          <span>Hemodialysis</span>
+          <span>Longitudinal modeling</span>
+          <span>External validation</span>
+        </div>
+      </article>
+
+      <article class="research-item">
+        <div class="research-card-head">
+          <div class="research-icon" aria-hidden="true">⠿</div>
+          <span class="item-index">04</span>
+        </div>
+        <h3 data-zh="智能微流控与科研系统" data-en="Microfluidics &amp; research systems">智能微流控与科研系统</h3>
+        <p data-zh="结合计算机视觉、液滴形态分割与多液滴协同路径规划，构建连接算法、自动化实验硬件与可复现工作流的科研软件系统。" data-en="Integrating computer vision, droplet segmentation, and path planning into software infrastructure connecting algorithms and laboratory hardware.">结合计算机视觉、液滴形态分割与多液滴协同路径规划，构建连接算法、自动化实验硬件与可复现工作流的科研软件系统。</p>
+        <div class="tags">
+          <span>Digital microfluidics</span>
+          <span>Computer vision</span>
+          <span>Research infrastructure</span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="publications" class="publications section">
+    <div class="wrap">
+      <div class="section-top">
+        <div>
+          <p class="eyebrow">02 / SELECTED PUBLICATIONS</p>
+          <h2 data-zh="把探索，写成可以讨论的证据。" data-en="Turning questions into verifiable evidence.">把探索，写成可以讨论的证据。</h2>
+        </div>
+        <a class="text-link pill-link" href="publications.bib" download>
+          <span data-zh="下载全部 BibTeX (.bib)" data-en="Download all BibTeX (.bib)">下载全部 BibTeX (.bib)</span>
+          <span aria-hidden="true">↓</span>
+        </a>
+      </div>
+
+      <article class="featured-paper">
+        <div class="paper-art" aria-hidden="true">
+          <div class="chip">
+            <span></span><span></span><span></span><span></span>
+          </div>
+          <div class="signal">
+            <svg viewBox="0 0 250 90">
+              <path d="M0 73h29l10-45 10 45h33l10-58 10 58h35l10-36 10 36h34l10-50 10 50h29"/>
+            </svg>
+          </div>
+          <span class="art-label">MEMS ARRAY × PHYSICS-INFORMED DL</span>
+        </div>
+        <div class="featured-copy">
+          <div class="paper-meta">
+            <span class="journal-pill">Advanced Science</span>
+            <time>2026</time>
+            <span class="role-pill" data-zh="共同第一作者 †" data-en="Co-First Author †">共同第一作者 †</span>
+            <span class="latest" data-zh="代表性新作" data-en="Featured paper">代表性新作</span>
+          </div>
+          <h3>
+            <a href="https://doi.org/10.1002/advs.77784" target="_blank" rel="noopener noreferrer">Temperature-Modulated MEMS Gas Sensor Array Enabled by Physics-Informed Deep Learning for Thermal-Runaway Characteristic Gas Discrimination</a>
+          </h3>
+          <p class="authors">Luo Q†, <strong class="author-self">Guo Q†</strong>, Liu R, Li Y, Zhu H, Zhang W, Chen Z, Liu Z, Cheng X</p>
+          <p class="paper-summary" data-zh="将温度调制 MEMS 气体传感阵列与物理信息深度学习相结合，利用非稳态热调制下的动力学响应特征，实现锂电池热失控早期特征气体的高精度辨识。" data-en="Combining temperature-modulated MEMS gas sensor arrays with physics-informed deep learning to extract transient thermo-kinetic signatures for early thermal-runaway gas discrimination.">将温度调制 MEMS 气体传感阵列与物理信息深度学习相结合，利用非稳态热调制下的动力学响应特征，实现锂电池热失控早期特征气体的高精度辨识。</p>
+          <div class="paper-actions">
+            <a class="action-pill primary-link" href="https://doi.org/10.1002/advs.77784" target="_blank" rel="noopener noreferrer">
+              <span data-zh="阅读论文 (DOI)" data-en="Read paper (DOI)">阅读论文 (DOI)</span> <span aria-hidden="true">↗</span>
+            </a>
+            <button type="button" class="action-pill cite" data-cite="luo2026mems" data-zh="查看 BibTeX" data-en="View BibTeX">查看 BibTeX</button>
+            <button type="button" class="action-pill quick-copy" data-copy-cite="luo2026mems" data-zh="复制引用" data-en="Copy BibTeX">复制引用</button>
+          </div>
+        </div>
+      </article>
+
+      <search class="publication-controls" aria-label="论文筛选与搜索">
+        <div class="filter-group" role="group" aria-label="论文研究领域筛选">
+          <button type="button" class="filter active" data-filter="all" aria-pressed="true">
+            <span data-zh="全部论文" data-en="All papers">全部论文</span>
+            <span class="filter-count">5</span>
+          </button>
+          <button type="button" class="filter" data-filter="sensing" aria-pressed="false">
+            <span data-zh="智能传感与物理 AI" data-en="Sensing &amp; Physical AI">智能传感与物理 AI</span>
+            <span class="filter-count">1</span>
+          </button>
+          <button type="button" class="filter" data-filter="clinical" aria-pressed="false">
+            <span data-zh="临床医疗机器学习" data-en="Clinical ML">临床医疗机器学习</span>
+            <span class="filter-count">4</span>
+          </button>
+        </div>
+        <div class="paper-search">
+          <label for="paper-search" class="visually-hidden" data-zh="搜索论文标题、期刊或关键词" data-en="Search paper titles, journals, or keywords">搜索论文标题、期刊或关键词</label>
+          <span class="search-icon" aria-hidden="true">⌕</span>
+          <input id="paper-search" type="search" placeholder="搜索标题、期刊或年份…" data-placeholder-zh="搜索标题、期刊或年份…" data-placeholder-en="Search title, journal, or year…">
+          <kbd class="search-kbd" aria-hidden="true">/</kbd>
+        </div>
+      </search>
+
+      <div class="paper-list" id="paper-list">
+        <article class="paper-row" data-topic="sensing">
+          <time>2026</time>
+          <div class="paper-row-body">
+            <div class="paper-row-meta">
+              <span class="paper-journal">Advanced Science</span>
+              <span class="paper-tag" data-zh="共同一作 †" data-en="Co-First †">共同一作 †</span>
+            </div>
+            <h3><a href="https://doi.org/10.1002/advs.77784" target="_blank" rel="noopener noreferrer">Temperature-Modulated MEMS Gas Sensor Array Enabled by Physics-Informed Deep Learning for Thermal-Runaway Characteristic Gas Discrimination</a></h3>
+            <p>Luo Q†, <strong class="author-self">Guo Q†</strong>, Liu R, Li Y, Zhu H, Zhang W, Chen Z, Liu Z, Cheng X</p>
+            <div class="paper-actions">
+              <a href="https://doi.org/10.1002/advs.77784" target="_blank" rel="noopener noreferrer">DOI: 10.1002/advs.77784 ↗</a>
+              <button type="button" class="cite" data-cite="luo2026mems">BibTeX</button>
+              <button type="button" class="quick-copy" data-copy-cite="luo2026mems" data-zh="复制引用" data-en="Copy">复制引用</button>
+            </div>
+          </div>
+          <span class="pub-number">01</span>
+        </article>
+
+        <article class="paper-row" data-topic="clinical">
+          <time>2026</time>
+          <div class="paper-row-body">
+            <div class="paper-row-meta">
+              <span class="paper-journal">Frontiers in Molecular Biosciences · 13:1746108</span>
+            </div>
+            <h3><a href="https://doi.org/10.3389/fmolb.2026.1746108" target="_blank" rel="noopener noreferrer">Comparison of machine learning models for hemoglobin prediction in patients undergoing maintenance hemodialysis</a></h3>
+            <p>Xie T, Su X, Yun C, Tang X, Zheng X, Dong J, <strong class="author-self">Guo Q</strong>, Zhu S, Tang D, Dai Y, Yin L</p>
+            <div class="paper-actions">
+              <a href="https://doi.org/10.3389/fmolb.2026.1746108" target="_blank" rel="noopener noreferrer">DOI: 10.3389/fmolb.2026.1746108 ↗</a>
+              <button type="button" class="cite" data-cite="xie2026hemoglobin">BibTeX</button>
+              <button type="button" class="quick-copy" data-copy-cite="xie2026hemoglobin" data-zh="复制引用" data-en="Copy">复制引用</button>
+            </div>
+          </div>
+          <span class="pub-number">02</span>
+        </article>
+
+        <article class="paper-row" data-topic="clinical">
+          <time>2025</time>
+          <div class="paper-row-body">
+            <div class="paper-row-meta">
+              <span class="paper-journal">Journal of Medical Systems · 49:112</span>
+              <span class="paper-tag" data-zh="共同一作 †" data-en="Co-First †">共同一作 †</span>
+            </div>
+            <h3><a href="https://doi.org/10.1007/s10916-025-02237-5" target="_blank" rel="noopener noreferrer">Prediction Model of Intradialytic Hypertension in Hemodialysis Patients Based on Machine Learning</a></h3>
+            <p>Wang Y†, Zhou H†, <strong class="author-self">Guo Q†</strong>, Wang K, Luo Y, Luan S, Tang D, Dong S, Yin L, Dai Y</p>
+            <div class="paper-actions">
+              <a href="https://doi.org/10.1007/s10916-025-02237-5" target="_blank" rel="noopener noreferrer">DOI: 10.1007/s10916-025-02237-5 ↗</a>
+              <button type="button" class="cite" data-cite="wang2025hypertension">BibTeX</button>
+              <button type="button" class="quick-copy" data-copy-cite="wang2025hypertension" data-zh="复制引用" data-en="Copy">复制引用</button>
+            </div>
+          </div>
+          <span class="pub-number">03</span>
+        </article>
+
+        <article class="paper-row" data-topic="clinical">
+          <time>2025</time>
+          <div class="paper-row-body">
+            <div class="paper-row-meta">
+              <span class="paper-journal">International Journal of Medical Informatics · 195:105744</span>
+            </div>
+            <h3><a href="https://doi.org/10.1016/j.ijmedinf.2024.105744" target="_blank" rel="noopener noreferrer">Prediction of mortality in hemodialysis patients based on autoencoders</a></h3>
+            <p>Su S, Gao J, Dong J, <strong class="author-self">Guo Q</strong>, Ma H, Luan S, Zheng X, Tao H, Zhou L, Dai Y</p>
+            <div class="paper-actions">
+              <a href="https://doi.org/10.1016/j.ijmedinf.2024.105744" target="_blank" rel="noopener noreferrer">DOI: 10.1016/j.ijmedinf.2024.105744 ↗</a>
+              <button type="button" class="cite" data-cite="su2025mortality">BibTeX</button>
+              <button type="button" class="quick-copy" data-copy-cite="su2025mortality" data-zh="复制引用" data-en="Copy">复制引用</button>
+            </div>
+          </div>
+          <span class="pub-number">04</span>
+        </article>
+
+        <article class="paper-row" data-topic="clinical">
+          <time>2023</time>
+          <div class="paper-row-body">
+            <div class="paper-row-meta">
+              <span class="paper-journal">Computer Methods and Programs in Biomedicine · 240:107698</span>
+            </div>
+            <h3><a href="https://doi.org/10.1016/j.cmpb.2023.107698" target="_blank" rel="noopener noreferrer">Machine learning-based intradialytic hypotension prediction of patients undergoing hemodialysis: A multicenter retrospective study</a></h3>
+            <p>Dong J, Wang K, He J, <strong class="author-self">Guo Q</strong>, Min H, Tang D, Zhang Z, Zhang C, Zheng F, Li Y, et al.</p>
+            <div class="paper-actions">
+              <a href="https://doi.org/10.1016/j.cmpb.2023.107698" target="_blank" rel="noopener noreferrer">DOI: 10.1016/j.cmpb.2023.107698 ↗</a>
+              <button type="button" class="cite" data-cite="dong2023hypotension">BibTeX</button>
+              <button type="button" class="quick-copy" data-copy-cite="dong2023hypotension" data-zh="复制引用" data-en="Copy">复制引用</button>
+            </div>
+          </div>
+          <span class="pub-number">05</span>
+        </article>
+      </div>
+
+      <p id="paper-empty" class="empty" hidden data-zh="没有匹配的论文，请尝试其他关键词或切换上方分类。" data-en="No matching papers found. Try another keyword or switch category above.">没有匹配的论文，请尝试其他关键词或切换上方分类。</p>
+
+      <div class="publication-foot">
+        <span id="paper-count" aria-live="polite">5 篇论文</span>
+        <span data-zh="Guo Q 加粗标识 · † 共同第一作者 · 按发表年份倒序排列" data-en="Guo Q highlighted in bold · † Co-first author · Ordered by publication year">Guo Q 加粗标识 · † 共同第一作者 · 按发表年份倒序排列</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="wrap section">
+    <div class="section-top">
+      <div>
+        <p class="eyebrow">03 / RESEARCH SYSTEMS &amp; OPEN SOURCE</p>
+        <h2 data-zh="从研究问题，到可以运行的系统。" data-en="From research questions to working systems.">从研究问题，到可以运行的系统。</h2>
+      </div>
+      <a class="text-link pill-link" href="https://github.com/ClimbHillTmr?tab=repositories" target="_blank" rel="noopener noreferrer">
+        <span data-zh="浏览 GitHub 全部仓库 (@ClimbHillTmr)" data-en="All GitHub repositories (@ClimbHillTmr)">浏览 GitHub 全部仓库 (@ClimbHillTmr)</span>
+        <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+
+    <div class="project-grid">
+      <article class="project">
+        <div class="project-visual gateway" aria-hidden="true">
+          <span class="terminal-label">ClimbHillTmr / rig-gateway</span>
+          <div class="gateway-flow">
+            <span>AGENT</span><i>↔</i><span>MCP</span><i>↔</i><span>RIG</span>
+          </div>
+          <span class="visual-detail">AUDITABLE REMOTE WORKFLOWS</span>
+        </div>
+        <div class="project-copy">
+          <div class="project-meta">
+            <span class="project-status" data-zh="开源基础设施" data-en="Open-source infrastructure">开源基础设施</span>
+            <span class="repo-slug">github.com/ClimbHillTmr/rig-gateway</span>
+          </div>
+          <h3>rig-gateway</h3>
+          <p data-zh="面向远程科研工作站与实验设备的自托管 MCP 网关，提供分级权限控制、沙箱执行与完整可审计的远程研究工作流。" data-en="A self-hosted MCP gateway for remote research workstations and experimental rigs, offering tiered capability control and auditable workflows.">面向远程科研工作站与实验设备的自托管 MCP 网关，提供分级权限控制、沙箱执行与完整可审计的远程研究工作流。</p>
+          <div class="tags">
+            <span>Python</span>
+            <span>Model Context Protocol</span>
+            <span>Research engineering</span>
+          </div>
+          <div class="project-actions">
+            <a class="project-link" href="https://github.com/ClimbHillTmr/rig-gateway" target="_blank" rel="noopener noreferrer">
+              <span data-zh="访问 GitHub 仓库" data-en="View GitHub repository">访问 GitHub 仓库</span>
+              <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="project-visual lithography" aria-hidden="true">
+          <span class="terminal-label">ClimbHillTmr / SubNano-HIL-MC</span>
+          <svg viewBox="0 0 360 140">
+            <path d="M180 0v34"/>
+            <path d="m180 34-50 91m50-91-20 91m20-91 10 91m-10-91 40 91m-40-91 75 91" stroke-dasharray="3 4"/>
+            <path d="M45 99h270v26H45z"/>
+            <path d="M45 108h270M45 116h270"/>
+            <circle cx="180" cy="34" r="4"/>
+          </svg>
+          <span class="visual-detail">ION TRANSPORT · LITHOGRAPHY</span>
+        </div>
+        <div class="project-copy">
+          <div class="project-meta">
+            <span class="project-status" data-zh="开源物理仿真框架" data-en="Open simulation framework">开源物理仿真框架</span>
+            <span class="repo-slug">github.com/ClimbHillTmr/SubNano-HIL-MC</span>
+          </div>
+          <h3>SubNano-HIL-MC</h3>
+          <p data-zh="面向亚纳米氦离子束光刻的多物理场蒙特卡洛研究框架，定量耦合离子散射、二次电子级联、能量沉积与线边缘粗糙度（LER）。" data-en="A multiphysics Monte Carlo simulation framework for sub-nanometer helium ion lithography, coupling ion scattering, energy deposition, and line-edge roughness.">面向亚纳米氦离子束光刻的多物理场蒙特卡洛研究框架，定量耦合离子散射、二次电子级联、能量沉积与线边缘粗糙度（LER）。</p>
+          <div class="tags">
+            <span>Monte Carlo</span>
+            <span>Helium ion lithography</span>
+            <span>Scientific computing</span>
+          </div>
+          <div class="project-actions">
+            <a class="project-link" href="https://github.com/ClimbHillTmr/SubNano-HIL-MC" target="_blank" rel="noopener noreferrer">
+              <span data-zh="访问 GitHub 仓库" data-en="View GitHub repository">访问 GitHub 仓库</span>
+              <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="project-visual droplet" aria-hidden="true">
+          <span class="terminal-label">SmartDMF · Vision &amp; Planning</span>
+          <div class="droplet-grid">
+            <span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span>
+            <i></i><i></i>
+          </div>
+          <span class="visual-detail">DETECT · SEGMENT · ROUTE</span>
+        </div>
+        <div class="project-copy">
+          <div class="project-meta">
+            <span class="project-status neutral" data-zh="科研软件平台" data-en="Research platform">科研软件平台</span>
+            <span>Digital Microfluidics</span>
+          </div>
+          <h3 data-zh="智能微流控液滴视觉与规划平台" data-en="Intelligent Droplet Vision &amp; Planning Platform">智能微流控液滴视觉与规划平台</h3>
+          <p data-zh="集成实时液滴目标检测、高精度形态分割、体积估计与多液滴防冲突路径规划，连接视觉感知算法与数字微流控闭环控制。" data-en="Integrating real-time droplet detection, morphological segmentation, volume estimation, and collision-free routing for closed-loop digital microfluidics.">集成实时液滴目标检测、高精度形态分割、体积估计与多液滴防冲突路径规划，连接视觉感知算法与数字微流控闭环控制。</p>
+          <div class="tags">
+            <span>YOLO / SAM</span>
+            <span>Morphological analysis</span>
+            <span>Path planning</span>
+          </div>
+          <div class="project-actions">
+            <button type="button" class="project-link" data-project="droplet">
+              <span data-zh="查看项目架构与方法" data-en="Architecture &amp; overview">查看项目架构与方法</span>
+              <span aria-hidden="true">→</span>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="project-visual clinical" aria-hidden="true">
+          <span class="terminal-label">Longitudinal Clinical ML</span>
+          <svg viewBox="0 0 360 140">
+            <path d="M32 75h31l10-12 15 24 15-45 18 64 15-31h40l13-13 14 25 14-45 18 63 15-30h61"/>
+            <g>
+              <circle cx="72" cy="117" r="3.5"/>
+              <circle cx="144" cy="117" r="3.5"/>
+              <circle cx="216" cy="117" r="3.5"/>
+              <circle cx="288" cy="117" r="3.5"/>
+              <path d="M72 117h216"/>
+            </g>
+          </svg>
+          <span class="visual-detail">TEMPORAL CAUSALITY · EXTERNAL VALIDATION</span>
+        </div>
+        <div class="project-copy">
+          <div class="project-meta">
+            <span class="project-status neutral" data-zh="在研课题" data-en="Ongoing research">在研课题</span>
+            <span>Clinical Data Science</span>
+          </div>
+          <h3>Hemodynamic Instability Memory</h3>
+          <p data-zh="在严格遵守患者级划分与时间因果边界的前提下，评估既往已完成透析序列对后续治疗血流动力学不稳定性的增量预测价值。" data-en="Evaluating the incremental predictive value of completed historical dialysis sequences for subsequent hemodynamic instability under strict temporal and patient-level protocols.">在严格遵守患者级划分与时间因果边界的前提下，评估既往已完成透析序列对后续治疗血流动力学不稳定性的增量预测价值。</p>
+          <div class="tags">
+            <span>Longitudinal sequences</span>
+            <span>Protocol guardrails</span>
+            <span>Multicenter cohorts</span>
+          </div>
+          <div class="project-actions">
+            <button type="button" class="project-link" data-project="him">
+              <span data-zh="查看研究设计与评估边界" data-en="Study design &amp; protocol">查看研究设计与评估边界</span>
+              <span aria-hidden="true">→</span>
+            </button>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="about" class="about section">
+    <div class="wrap about-grid">
+      <div>
+        <p class="eyebrow">04 / ABOUT &amp; METHODOLOGY</p>
+        <h2 data-zh="在学科之间，寻找可验证的连接。" data-en="Finding verifiable connections across disciplines.">在学科之间，寻找可验证的连接。</h2>
+        <p class="about-description" data-zh="我的学术训练横跨信息管理、计算统计与电子信息工程。目前在南方科技大学攻读博士学位，关注物理系统与临床纵向数据中的表征学习与泛化边界，致力于把算法转化为可复现、可审计的科研软件与工程系统。" data-en="My academic training spans information systems, computational statistics, and electronic information engineering. Currently a doctoral student at SUSTech, I study representation learning and generalization in physical and clinical systems—turning models into reproducible research software.">我的学术训练横跨信息管理、计算统计与电子信息工程。目前在南方科技大学攻读博士学位，关注物理系统与临床纵向数据中的表征学习与泛化边界，致力于把算法转化为可复现、可审计的科研软件与工程系统。</p>
+        <div class="principles-grid">
+          <div class="principle-card">
+            <strong data-zh="物理先验引导" data-en="Physics-guided">物理先验引导</strong>
+            <span data-zh="将反应动力学、热调制与输运方程融入表征学习。" data-en="Embedding reaction kinetics and transport priors into learning.">将反应动力学、热调制与输运方程融入表征学习。</span>
+          </div>
+          <div class="principle-card">
+            <strong data-zh="严格协议边界" data-en="Strict protocols">严格协议边界</strong>
+            <span data-zh="零患者级泄漏、零未来信息穿越，坚持外部队列验证。" data-en="Zero patient or temporal leakage, verified across cohorts.">零患者级泄漏、零未来信息穿越，坚持外部队列验证。</span>
+          </div>
+          <div class="principle-card">
+            <strong data-zh="开源科研工程" data-en="Open engineering">开源科研工程</strong>
+            <span data-zh="构建轻量、模块化、可复现的仿真与实验工具链。" data-en="Building lightweight, reproducible simulation and lab toolchains.">构建轻量、模块化、可复现的仿真与实验工具链。</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="education" aria-label="Academic timeline">
+        <div>
+          <span class="edu-period">2025 — <span data-zh="至今" data-en="Present">至今</span></span>
+          <h3 data-zh="南方科技大学 (SUSTech)" data-en="Southern University of Science and Technology">南方科技大学 (SUSTech)</h3>
+          <p data-zh="电子信息 · 博士研究生" data-en="Electronic Information · Doctoral Student">电子信息 · 博士研究生</p>
+          <small data-zh="半导体学院（国家卓越工程师学院）" data-en="College of Semiconductors (National Graduate College for Engineers)">半导体学院（国家卓越工程师学院）</small>
+        </div>
+        <div>
+          <span class="edu-period">2018 — 2019</span>
+          <h3>University of York</h3>
+          <p data-zh="统计与计算金融 · 理学硕士 (MSc)" data-en="Statistics &amp; Computational Finance · MSc">统计与计算金融 · 理学硕士 (MSc)</p>
+          <small data-zh="统计推断 · 随机过程 · 数值计算" data-en="Statistical Inference · Stochastic Processes · Numerical Computing">统计推断 · 随机过程 · 数值计算</small>
+        </div>
+        <div>
+          <span class="edu-period">2013 — 2018</span>
+          <h3>University of Liverpool</h3>
+          <p data-zh="信息管理与信息系统 · 理学学士 (BSc)" data-en="Information Management &amp; Information Systems · BSc">信息管理与信息系统 · 理学学士 (BSc)</p>
+          <small data-zh="数据建模 · 软件工程 · 信息系统架构" data-en="Data Modeling · Software Engineering · Information Systems">数据建模 · 软件工程 · 信息系统架构</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap contact" aria-label="GitHub and research contact">
+    <span class="asterisk" aria-hidden="true">✳</span>
+    <h2 data-zh="好问题，值得一起探索。" data-en="Good questions are worth exploring together.">好问题，值得一起探索。</h2>
+    <p data-zh="欢迎通过 GitHub 了解我的开源工具、复现代码，或围绕智能传感、物理建模与临床机器学习交流研究。" data-en="Explore my open-source tools and research code on GitHub, or connect for discussions on intelligent sensing, physical modeling, and clinical machine learning.">欢迎通过 GitHub 了解我的开源工具、复现代码，或围绕智能传感、物理建模与临床机器学习交流研究。</p>
+    <div class="contact-actions">
+      <a class="button primary" href="https://github.com/ClimbHillTmr" target="_blank" rel="noopener noreferrer">
+        <svg class="gh-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.42 7.42 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+        <span data-zh="GitHub 主页 (@ClimbHillTmr)" data-en="GitHub Profile (@ClimbHillTmr)">GitHub 主页 (@ClimbHillTmr)</span>
+        <span aria-hidden="true">↗</span>
+      </a>
+      <a class="button secondary" href="https://github.com/ClimbHillTmr?tab=repositories" target="_blank" rel="noopener noreferrer">
+        <span data-zh="浏览开源代码仓库" data-en="Browse Open Repositories">浏览开源代码仓库</span>
+        <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap site-footer">
+  <a class="footer-brand" href="#home">
+    <span class="asterisk" aria-hidden="true">✳</span>
+    <strong>Qi Guo</strong>
+  </a>
+  <span class="footer-motto" data-zh="保持好奇，尊重证据。" data-en="Stay curious. Follow the evidence.">保持好奇，尊重证据。</span>
+  <div class="footer-links">
+    <a href="https://climbhilltmr.github.io/">climbhilltmr.github.io</a>
+    <span aria-hidden="true">·</span>
+    <a href="https://github.com/ClimbHillTmr" target="_blank" rel="noopener noreferrer">GitHub @ClimbHillTmr ↗</a>
+  </div>
+</footer>
+
+<dialog id="citation-dialog" closedby="any" aria-labelledby="citation-title">
+  <div class="dialog-head">
+    <div>
+      <p class="eyebrow">BIBTEX CITATION</p>
+      <h2 id="citation-title">BibTeX</h2>
+    </div>
+    <button type="button" class="close-dialog" aria-label="关闭">×</button>
+  </div>
+  <textarea id="citation-text" readonly aria-label="BibTeX citation" spellcheck="false"></textarea>
+  <div class="dialog-bottom">
+    <button type="button" id="copy-citation" class="button primary" data-zh="复制 BibTeX 引用" data-en="Copy BibTeX citation">复制 BibTeX 引用</button>
+    <a class="button secondary" href="publications.bib" download data-zh="下载 .bib 文件" data-en="Download .bib file">下载 .bib 文件</a>
+    <span id="copy-status" role="status" aria-live="polite"></span>
+  </div>
+</dialog>
+
+<dialog id="project-dialog" closedby="any" aria-labelledby="project-title">
+  <div class="dialog-head">
+    <div>
+      <p class="eyebrow" id="project-eyebrow">RESEARCH OVERVIEW</p>
+      <h2 id="project-title"></h2>
+    </div>
+    <button type="button" class="close-dialog" aria-label="关闭">×</button>
+  </div>
+  <div id="project-detail"></div>
+</dialog>
+
+<div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+<script>
+window.PUBLICATION_CITATIONS = {
+  "luo2026mems": "@article{luo2026mems,\n  author = {Luo, Qin and Guo, Qi and Liu, Rongyue and Li, Yilin and Zhu, Haiping and Zhang, Wei and Chen, Zhongren and Liu, Zhaojun and Cheng, Xing},\n  title = {{Temperature-Modulated MEMS Gas Sensor Array Enabled by Physics-Informed Deep Learning for Thermal-Runaway Characteristic Gas Discrimination}},\n  journal = {Advanced Science},\n  year = {2026},\n  doi = {10.1002/advs.77784},\n  url = {https://doi.org/10.1002/advs.77784}\n}",
+  "xie2026hemoglobin": "@article{xie2026hemoglobin,\n  author = {Xie T and Su X and Yun C and Tang X and Zheng X and Dong J and Guo Q and Zhu S and Tang D and Dai Y and Yin L},\n  title = {{Comparison of machine learning models for hemoglobin prediction in patients undergoing maintenance hemodialysis}},\n  journal = {Frontiers in Molecular Biosciences},\n  year = {2026},\n  doi = {10.3389/fmolb.2026.1746108},\n  url = {https://doi.org/10.3389/fmolb.2026.1746108}\n}",
+  "wang2025hypertension": "@article{wang2025hypertension,\n  author = {Wang Y and Zhou H and Guo Q and Wang K and Luo Y and Luan S and Tang D and Dong S and Yin L and Dai Y},\n  title = {{Prediction Model of Intradialytic Hypertension in Hemodialysis Patients Based on Machine Learning}},\n  journal = {Journal of Medical Systems},\n  year = {2025},\n  doi = {10.1007/s10916-025-02237-5},\n  url = {https://doi.org/10.1007/s10916-025-02237-5}\n}",
+  "su2025mortality": "@article{su2025mortality,\n  author = {Su S and Gao J and Dong J and Guo Q and Ma H and Luan S and Zheng X and Tao H and Zhou L and Dai Y},\n  title = {{Prediction of mortality in hemodialysis patients based on autoencoders}},\n  journal = {International Journal of Medical Informatics},\n  year = {2025},\n  doi = {10.1016/j.ijmedinf.2024.105744},\n  url = {https://doi.org/10.1016/j.ijmedinf.2024.105744}\n}",
+  "dong2023hypotension": "@article{dong2023hypotension,\n  author = {Dong J and Wang K and He J and Guo Q and Min H and Tang D and Zhang Z and Zhang C and Zheng F and Li Y and Xu H and Wang G and Luan S and Yin L and Zhang X and Dai Y},\n  title = {{Machine learning-based intradialytic hypotension prediction of patients undergoing hemodialysis: A multicenter retrospective study}},\n  journal = {Computer Methods and Programs in Biomedicine},\n  year = {2023},\n  doi = {10.1016/j.cmpb.2023.107698},\n  url = {https://doi.org/10.1016/j.cmpb.2023.107698}\n}"
+};
+
+(() => {
+  'use strict';
+  let language = 'zh';
+  let topic = 'all';
+  let toastTimer = null;
+
+  const $ = (selector) => document.querySelector(selector);
+  const $$ = (selector) => [...document.querySelectorAll(selector)];
+  const rows = $$('.paper-row');
+  const search = $('#paper-search');
+  const toast = $('#toast');
+
+  const projects = {
+    droplet: {
+      eyebrow: 'DIGITAL MICROFLUIDICS · VISION & PLANNING',
+      zh: {
+        title: '智能微流控液滴视觉与规划平台',
+        paragraphs: [
+          '面向数字微流控（DMF）自动化实验，构建集液滴视觉感知、形态定量分析与多液滴协同路径规划于一体的科研软件平台。'
+        ],
+        bullets: [
+          '实时检测与分割：结合 YOLO 目标检测与 SAM 分割模型，识别电极阵列上的多液滴位置与边界。',
+          '形态与体积估计：基于 OpenCV 亚像素轮廓分析，追踪液滴形变、接触角变化与分裂/合并状态。',
+          '防冲突路径规划：在离散电极网格上引入时空约束搜索，生成多液滴并行调度的无碰撞控制序列。'
+        ],
+        note: '当前状态：实验室研究与软件系统持续迭代中。'
+      },
+      en: {
+        title: 'Intelligent Droplet Vision & Planning Platform',
+        paragraphs: [
+          'A research software platform integrating visual perception, quantitative morphological analysis, and multi-droplet path planning for automated digital microfluidic (DMF) experiments.'
+        ],
+        bullets: [
+          'Detection & segmentation: Combines YOLO object detection and SAM segmentation to localize droplets across electrode arrays.',
+          'Morphological metrology: Uses OpenCV contour analysis to track droplet deformation, splitting, merging, and volume.',
+          'Collision-free routing: Spatio-temporal grid search for safe, parallel multi-droplet scheduling.'
+        ],
+        note: 'Status: Ongoing research platform and experimental software integration.'
+      }
+    },
+    him: {
+      eyebrow: 'CLINICAL MACHINE LEARNING · LONGITUDINAL MODELING',
+      zh: {
+        title: 'Hemodynamic Instability Memory',
+        paragraphs: [
+          '围绕维持性血液透析中的血流动力学不稳定性（如透析中低血压 IDH），系统评估患者既往已完成的纵向治疗历史是否提供超越当次基线状态的增量预测信息。'
+        ],
+        bullets: [
+          '严格时间因果边界：仅使用目标透析开始前已完整结束的历史记录，杜绝任何未来信息或同次治疗后段信号泄漏。',
+          '患者级独立划分：所有模型训练、超参数选择与外部验证均严格按患者 ID 隔离。',
+          '增量价值量化：在最强当次基线模型之上，通过多中心队列验证历史序列特征的可迁移性与稳健性。'
+        ],
+        note: '学术声明：本研究聚焦于纵向预测信息的统计评价，不据此推断生理记忆机制或直接因果效应。'
+      },
+      en: {
+        title: 'Hemodynamic Instability Memory',
+        paragraphs: [
+          'Systematically evaluating whether completed longitudinal dialysis histories provide incremental predictive information for subsequent intradialytic hemodynamic instability beyond the latest pre-treatment baseline.'
+        ],
+        bullets: [
+          'Strict temporal causality: Uses only fully completed prior sessions without lookahead or intra-session leakage.',
+          'Patient-level isolation: Enforces zero patient overlap across training, validation, and multicenter test cohorts.',
+          'Incremental evaluation: Quantifies predictive gain over strong single-session baselines across independent clinical centers.'
+        ],
+        note: 'Protocol note: Evaluates statistical predictive information; physiological memory or causal effects are not inferred.'
+      }
+    }
+  };
+
+  function showToast(message) {
+    if (!toast) return;
+    toast.textContent = message;
+    toast.hidden = false;
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => {
+      toast.hidden = true;
+    }, 2400);
+  }
+
+  function filterPapers() {
+    const terms = search.value.trim().toLocaleLowerCase().split(/\s+/).filter(Boolean);
+    let count = 0;
+    rows.forEach((row) => {
+      const text = row.textContent.toLocaleLowerCase();
+      const matchesTopic = topic === 'all' || row.dataset.topic === topic;
+      const matchesSearch = terms.every((term) => text.includes(term));
+      row.hidden = !(matchesTopic && matchesSearch);
+      if (!row.hidden) count++;
+    });
+    $('#paper-empty').hidden = count !== 0;
+    $('#paper-count').textContent =
+      language === 'zh' ? `当前显示 ${count} 篇论文` : `Showing ${count} ${count === 1 ? 'paper' : 'papers'}`;
+  }
+
+  function closeMenu() {
+    $('#nav').classList.remove('open');
+    $('#menu').setAttribute('aria-expanded', 'false');
+  }
+
+  function setLanguage(next) {
+    language = next;
+    document.documentElement.lang = next === 'zh' ? 'zh-CN' : 'en';
+    document.title = next === 'zh' ? 'Qi Guo · AI 与真实世界' : 'Qi Guo · AI for the Physical World';
+    document.body.classList.toggle('en', next === 'en');
+    $$('[data-zh][data-en]').forEach((el) => {
+      el.textContent = el.dataset[next];
+    });
+    search.placeholder = search.dataset[next === 'zh' ? 'placeholderZh' : 'placeholderEn'];
+    $('#language').textContent = next === 'zh' ? 'EN' : '中文';
+    $('#language').setAttribute('aria-label', next === 'zh' ? 'Switch to English' : '切换为中文');
+    $('#menu').setAttribute('aria-label', next === 'zh' ? '切换导航' : 'Toggle navigation');
+    $$('.close-dialog').forEach((el) => el.setAttribute('aria-label', next === 'zh' ? '关闭' : 'Close'));
+    $('#copy-status').textContent = '';
+    filterPapers();
+  }
+
+  async function copyCitationText(key, triggerButton) {
+    const bib = window.PUBLICATION_CITATIONS && window.PUBLICATION_CITATIONS[key];
+    if (!bib) return;
+    try {
+      await navigator.clipboard.writeText(bib);
+      const msg = language === 'zh' ? '已复制 BibTeX 引用' : 'BibTeX citation copied';
+      showToast(msg);
+      if (triggerButton) {
+        const original = triggerButton.textContent;
+        triggerButton.textContent = language === 'zh' ? '已复制 ✓' : 'Copied ✓';
+        setTimeout(() => {
+          triggerButton.textContent = triggerButton.dataset[language] || original;
+        }, 1600);
+      }
+    } catch {
+      $('#citation-text').value = bib;
+      $('#copy-status').textContent =
+        language === 'zh' ? '请使用 Ctrl/Cmd+C 手动复制' : 'Press Ctrl/Cmd+C to copy manually';
+      $('#citation-dialog').showModal();
+    }
+  }
+
+  $('#language').addEventListener('click', () => setLanguage(language === 'zh' ? 'en' : 'zh'));
+
+  $('#menu').addEventListener('click', () => {
+    const opened = $('#nav').classList.toggle('open');
+    $('#menu').setAttribute('aria-expanded', String(opened));
+  });
+
+  $$('#nav a').forEach((link) => link.addEventListener('click', closeMenu));
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeMenu();
+    if (event.key === '/' && document.activeElement !== search && !['INPUT', 'TEXTAREA'].includes(document.activeElement?.tagName)) {
+      event.preventDefault();
+      search.focus();
+    }
+  });
+
+  $$('.filter').forEach((button) =>
+    button.addEventListener('click', () => {
+      topic = button.dataset.filter;
+      $$('.filter').forEach((el) => {
+        el.classList.toggle('active', el === button);
+        el.setAttribute('aria-pressed', String(el === button));
+      });
+      filterPapers();
+    })
+  );
+
+  search.addEventListener('input', filterPapers);
+
+  $$('.cite').forEach((button) =>
+    button.addEventListener('click', () => {
+      $('#citation-text').value = window.PUBLICATION_CITATIONS[button.dataset.cite];
+      $('#copy-status').textContent = '';
+      $('#citation-dialog').showModal();
+    })
+  );
+
+  $$('[data-copy-cite]').forEach((button) =>
+    button.addEventListener('click', () => {
+      copyCitationText(button.dataset.copyCite, button);
+    })
+  );
+
+  $('#copy-citation').addEventListener('click', async () => {
+    const field = $('#citation-text');
+    try {
+      await navigator.clipboard.writeText(field.value);
+      const msg = language === 'zh' ? '已复制到剪贴板 ✓' : 'Copied to clipboard ✓';
+      $('#copy-status').textContent = msg;
+      showToast(msg);
+    } catch {
+      field.focus();
+      field.select();
+      $('#copy-status').textContent =
+        language === 'zh' ? '引用已选中，请手动复制。' : 'Citation selected. Copy it manually.';
+    }
+  });
+
+  $$('[data-project]').forEach((button) =>
+    button.addEventListener('click', () => {
+      const proj = projects[button.dataset.project];
+      if (!proj) return;
+      const data = proj[language];
+      $('#project-eyebrow').textContent = proj.eyebrow;
+      $('#project-title').textContent = data.title;
+      const nodes = [];
+      data.paragraphs.forEach((text) => {
+        const p = document.createElement('p');
+        p.textContent = text;
+        nodes.push(p);
+      });
+      if (data.bullets && data.bullets.length) {
+        const ul = document.createElement('ul');
+        data.bullets.forEach((item) => {
+          const li = document.createElement('li');
+          li.textContent = item;
+          ul.appendChild(li);
+        });
+        nodes.push(ul);
+      }
+      if (data.note) {
+        const note = document.createElement('div');
+        note.className = 'detail-note';
+        note.textContent = data.note;
+        nodes.push(note);
+      }
+      $('#project-detail').replaceChildren(...nodes);
+      $('#project-dialog').showModal();
+    })
+  );
+
+  $$('.close-dialog').forEach((button) =>
+    button.addEventListener('click', () => button.closest('dialog').close())
+  );
+
+  $$('dialog').forEach((dialog) =>
+    dialog.addEventListener('click', (event) => {
+      const rect = dialog.getBoundingClientRect();
+      if (
+        event.target === dialog &&
+        (event.clientX < rect.left ||
+          event.clientX > rect.right ||
+          event.clientY < rect.top ||
+          event.clientY > rect.bottom)
+      ) {
+        dialog.close();
+      }
+    })
+  );
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(
+      (entries) =>
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            $$('#nav a').forEach((link) =>
+              link.classList.toggle('active', link.hash === `#${entry.target.id}`)
+            );
+          }
+        }),
+      { rootMargin: '-15% 0px -65% 0px' }
+    );
+    $$('main section[id]').forEach((section) => observer.observe(section));
+  }
+
+  setLanguage(language);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Qi Guo · AI 与真实世界</title>
+  <meta name="description" content="Qi Guo，南方科技大学电子信息博士生。研究智能传感、物理 AI、半导体工艺与临床机器学习。了解最新论文与研究项目。">
+  <meta name="theme-color" content="#faf9f5">
+  <link rel="canonical" href="https://climbhilltmr.github.io/">
+  <meta property="og:title" content="Qi Guo · AI for the Physical World">
+  <meta property="og:description" content="Research, publications, and projects at the intersection of machine learning, intelligent sensing, semiconductor modeling, and clinical data science.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://climbhilltmr.github.io/">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="styles.css">
+  <script src="citations.js" defer></script>
+  <script src="app.js" defer></script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Qi Guo","url":"https://climbhilltmr.github.io/","affiliation":{"@type":"CollegeOrUniversity","name":"Southern University of Science and Technology"},"sameAs":["https://github.com/ClimbHillTmr"],"knowsAbout":["Machine Learning","Gas Sensing","Semiconductor Process Modeling","Clinical Data Science","Digital Microfluidics"]}</script>
+</head>
+<body>
+<a class="skip" href="#main" data-zh="跳至主要内容" data-en="Skip to main content">跳至主要内容</a>
+
+<header class="site-header">
+  <div class="nav-wrap">
+    <a class="wordmark" href="#home" aria-label="Qi Guo">
+      <span class="asterisk" aria-hidden="true">✳</span>
+      <strong>Qi Guo</strong>
+      <span class="wordmark-tag" data-zh="学术主页" data-en="Research">学术主页</span>
+    </a>
+    <nav id="nav" aria-label="Primary">
+      <a href="#research" data-zh="研究方向" data-en="Research">研究方向</a>
+      <a href="#publications" data-zh="发表论文" data-en="Publications">发表论文</a>
+      <a href="#projects" data-zh="研究项目" data-en="Projects">研究项目</a>
+      <a href="#about" data-zh="关于" data-en="About">关于</a>
+    </nav>
+    <div class="nav-actions">
+      <button id="language" type="button" class="lang-switch" aria-label="Switch to English">EN</button>
+      <a href="https://github.com/ClimbHillTmr" target="_blank" rel="noopener noreferrer" class="github-nav" aria-label="GitHub @ClimbHillTmr">
+        <svg class="gh-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.42 7.42 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+        <span>@ClimbHillTmr</span>
+        <span class="ext-arrow" aria-hidden="true">↗</span>
+      </a>
+      <button id="menu" type="button" class="menu" aria-label="切换导航" aria-expanded="false" aria-controls="nav">
+        <span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+  <section id="home" class="hero wrap">
+    <div class="hero-copy">
+      <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> QI GUO · RESEARCH &amp; ENGINEERING</p>
+      <h1>
+        <span data-zh="让 AI 走进" data-en="Bringing AI into">让 AI 走进</span><br>
+        <em data-zh="真实的物理世界。" data-en="the physical world.">真实的物理世界。</em>
+      </h1>
+      <p class="hero-intro" data-zh="我是 Qi Guo，南方科技大学电子信息博士生。以统计学与机器学习为工具，探索智能传感、半导体制造与临床医疗中的真实问题，在物理先验、实验数据与可验证系统之间建立连接。" data-en="I’m Qi Guo, a doctoral student in Electronic Information at SUSTech. I use statistics and machine learning to study real-world problems across intelligent sensing, semiconductor manufacturing, and clinical medicine—bridging physical priors, empirical data, and verifiable systems.">我是 Qi Guo，南方科技大学电子信息博士生。以统计学与机器学习为工具，探索智能传感、半导体制造与临床医疗中的真实问题，在物理先验、实验数据与可验证系统之间建立连接。</p>
+      <div class="hero-buttons">
+        <a class="button primary" href="#publications">
+          <span data-zh="阅读最新论文" data-en="Explore publications">阅读最新论文</span>
+          <span aria-hidden="true">↓</span>
+        </a>
+        <a class="button secondary" href="#projects">
+          <span data-zh="浏览研究与开源项目" data-en="Research &amp; open-source projects">浏览研究与开源项目</span>
+          <span aria-hidden="true">↓</span>
+        </a>
+      </div>
+      <div class="hero-meta">
+        <span class="affiliation" data-zh="南方科技大学 · 半导体学院（国家卓越工程师学院）" data-en="SUSTech · College of Semiconductors (National Graduate College for Engineers)">南方科技大学 · 半导体学院（国家卓越工程师学院）</span>
+        <span class="meta-sep" aria-hidden="true">·</span>
+        <a class="hero-gh-link" href="https://github.com/ClimbHillTmr" target="_blank" rel="noopener noreferrer">github.com/ClimbHillTmr ↗</a>
+      </div>
+    </div>
+
+    <div class="hero-visual" aria-hidden="true">
+      <div class="visual-card">
+        <div class="visual-kicker">
+          <span>PATTERNS · PRINCIPLES · POSSIBILITIES</span>
+          <span class="visual-badge">SYS.01</span>
+        </div>
+        <svg viewBox="0 0 420 350" fill="none">
+          <defs>
+            <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+              <circle cx="1" cy="1" r=".8" fill="#c9c2b2"/>
+            </pattern>
+            <linearGradient id="surface" x1="85" y1="95" x2="320" y2="285" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#d98a63"/>
+              <stop offset="0.55" stop-color="#b36549"/>
+              <stop offset="1" stop-color="#6e8268"/>
+            </linearGradient>
+          </defs>
+          <rect x="24" y="14" width="372" height="320" rx="6" fill="url(#grid)"/>
+          <g stroke="#bfb7a4" stroke-width=".85">
+            <path d="m68 205 142 80 142-81-141-79Z"/>
+            <path d="m68 220 142 80 142-81M68 235l142 80 142-81"/>
+            <path d="M68 205v30m142 50v30m142-111v30"/>
+          </g>
+          <g stroke="url(#surface)" stroke-width="1.25" opacity=".95">
+            <path d="m76 198 14-2 14-6 14-19 14-29 14-12 14 12 14 23 14 21 14 8 14-7 14-28 14-17 14 8 14 29 14 22 14 6 14-3 14-7"/>
+            <path d="m85 204 14-2 14-6 14-19 14-29 14-12 14 12 14 23 14 21 14 8 14-7 14-28 14-17 14 8 14 29 14 22 14 6 14-3 14-7"/>
+            <path d="m94 210 14-2 14-6 14-19 14-29 14-12 14 12 14 23 14 21 14 8 14-7 14-28 14-17 14 8 14 29 14 22 14 6 14-3 14-7"/>
+            <path d="m103 216 14-2 14-6 14-19 14-29 14-12 14 12 14 23 14 21 14 8 14-7 14-28 14-17 14 8 14 29 14 22 14 6 14-3"/>
+            <path d="m112 222 14-2 14-6 14-19 14-29 14-12 14 12 14 23 14 21 14 8 14-7 14-28 14-17 14 8 14 29 14 22 14 6"/>
+            <path d="m121 228 14-2 14-6 14-19 14-29 14-12 14 12 14 23 14 21 14 8 14-7 14-28 14-17 14 8 14 29 14 22"/>
+            <path d="m130 234 14-2 14-6 14-19 14-29 14-12 14 12 14 23 14 21 14 8 14-7 14-28 14-17 14 8 14 29"/>
+            <path d="m139 240 14-2 14-6 14-19 14-29 14-12 14 12 14 23 14 21 14 8 14-7 14-28 14-17 14 8"/>
+            <path d="m148 246 14-2 14-6 14-19 14-29 14-12 14 12 14 23 14 21 14 8 14-7 14-28 14-17"/>
+            <path d="m157 252 14-2 14-6 14-19 14-29 14-12 14 12 14 23 14 21 14 8 14-7 14-28"/>
+            <path d="m166 258 14-2 14-6 14-19 14-29 14-12 14 12 14 23 14 21 14 8 14-7"/>
+            <path d="m175 264 14-2 14-6 14-19 14-29 14-12 14 12 14 23 14 21 14 8"/>
+            <path d="m184 270 14-2 14-6 14-19 14-29 14-12 14 12 14 23 14 21"/>
+          </g>
+          <g stroke="#b36549" stroke-width="1.2">
+            <path d="M134 62v14m-7-7h14m-12-5 10 10m0-10-10 10"/>
+            <path d="m264 120 22-34 40-7" stroke-dasharray="3 4"/>
+          </g>
+          <circle cx="264" cy="120" r="4.5" fill="#b36549"/>
+          <circle cx="210" cy="285" r="3.5" fill="#6e8268"/>
+          <g fill="#78776a" font-family="Georgia, serif" font-size="9.5" letter-spacing="1.2">
+            <text x="256" y="68">PHYSICAL PRIORS</text>
+            <text x="42" y="282">REPRESENTATION</text>
+            <text x="272" y="312">VERIFICATION</text>
+          </g>
+        </svg>
+        <div class="visual-foot">
+          <span>OBSERVATION → MODELING → EVIDENCE</span>
+          <span>SUSTech · SHENZHEN</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="research-strip" aria-label="Research domains">
+    <div class="wrap">
+      <a href="#research"><span>01</span> INTELLIGENT SENSING</a>
+      <a href="#research"><span>02</span> SEMICONDUCTOR PHYSICS</a>
+      <a href="#research"><span>03</span> CLINICAL MACHINE LEARNING</a>
+      <a href="#research"><span>04</span> MICROFLUIDIC SYSTEMS</a>
+    </div>
+  </div>
+
+  <section id="research" class="wrap section">
+    <div class="section-top">
+      <div>
+        <p class="eyebrow">01 / RESEARCH INTERESTS</p>
+        <h2 data-zh="不同的场景，共同的科学问题。" data-en="Different domains. Shared scientific questions.">不同的场景，共同的科学问题。</h2>
+      </div>
+      <p class="section-note" data-zh="从真实物理与临床场景出发，连接领域机理、统计学习与严谨验证。" data-en="Starting from physical and clinical reality to connect domain mechanisms, statistical learning, and rigorous validation.">从真实物理与临床场景出发，连接领域机理、统计学习与严谨验证。</p>
+    </div>
+
+    <div class="research-grid">
+      <article class="research-item">
+        <div class="research-card-head">
+          <div class="research-icon" aria-hidden="true">◎</div>
+          <span class="item-index">01</span>
+        </div>
+        <h3 data-zh="智能传感与表征学习" data-en="Intelligent sensing &amp; representations">智能传感与表征学习</h3>
+        <p data-zh="研究气体传感阵列的温度调制、动力学响应、长期漂移与跨条件泛化，关注预测性能背后的物理可观测性与评估边界。" data-en="Studying temperature modulation, dynamic response, long-term drift, and cross-condition generalization in gas sensor arrays with strict evaluation boundaries.">研究气体传感阵列的温度调制、动力学响应、长期漂移与跨条件泛化，关注预测性能背后的物理可观测性与评估边界。</p>
+        <div class="tags">
+          <span>MEMS gas sensing</span>
+          <span>Physics-informed DL</span>
+          <span>Drift recovery</span>
+        </div>
+      </article>
+
+      <article class="research-item">
+        <div class="research-card-head">
+          <div class="research-icon" aria-hidden="true">▧</div>
+          <span class="item-index">02</span>
+        </div>
+        <h3 data-zh="半导体工艺与物理建模" data-en="Semiconductors &amp; physical modeling">半导体工艺与物理建模</h3>
+        <p data-zh="探索先进光刻、刻蚀与纳米压印中的多物理场蒙特卡洛模拟、统计建模与逆向优化，连接工艺参数与可解释的微观物理过程。" data-en="Exploring multiphysics Monte Carlo simulation, statistical modeling, and optimization for lithography, etching, and nanoimprint processes.">探索先进光刻、刻蚀与纳米压印中的多物理场蒙特卡洛模拟、统计建模与逆向优化，连接工艺参数与可解释的微观物理过程。</p>
+        <div class="tags">
+          <span>Helium ion lithography</span>
+          <span>Monte Carlo</span>
+          <span>Process optimization</span>
+        </div>
+      </article>
+
+      <article class="research-item">
+        <div class="research-card-head">
+          <div class="research-icon" aria-hidden="true">⌁</div>
+          <span class="item-index">03</span>
+        </div>
+        <h3 data-zh="临床机器学习" data-en="Clinical machine learning">临床机器学习</h3>
+        <p data-zh="围绕血液透析血流动力学不稳定性、血红蛋白与远期预后开展纵向建模，坚持患者级划分、时间因果边界与多中心外部验证。" data-en="Longitudinal modeling of hemodialysis instability, hemoglobin, and outcomes—enforcing patient-level splits, temporal causality, and multicenter validation.">围绕血液透析血流动力学不稳定性、血红蛋白与远期预后开展纵向建模，坚持患者级划分、时间因果边界与多中心外部验证。</p>
+        <div class="tags">
+          <span>Hemodialysis</span>
+          <span>Longitudinal modeling</span>
+          <span>External validation</span>
+        </div>
+      </article>
+
+      <article class="research-item">
+        <div class="research-card-head">
+          <div class="research-icon" aria-hidden="true">⠿</div>
+          <span class="item-index">04</span>
+        </div>
+        <h3 data-zh="智能微流控与科研系统" data-en="Microfluidics &amp; research systems">智能微流控与科研系统</h3>
+        <p data-zh="结合计算机视觉、液滴形态分割与多液滴协同路径规划，构建连接算法、自动化实验硬件与可复现工作流的科研软件系统。" data-en="Integrating computer vision, droplet segmentation, and path planning into software infrastructure connecting algorithms and laboratory hardware.">结合计算机视觉、液滴形态分割与多液滴协同路径规划，构建连接算法、自动化实验硬件与可复现工作流的科研软件系统。</p>
+        <div class="tags">
+          <span>Digital microfluidics</span>
+          <span>Computer vision</span>
+          <span>Research infrastructure</span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="publications" class="publications section">
+    <div class="wrap">
+      <div class="section-top">
+        <div>
+          <p class="eyebrow">02 / SELECTED PUBLICATIONS</p>
+          <h2 data-zh="把探索，写成可以讨论的证据。" data-en="Turning questions into verifiable evidence.">把探索，写成可以讨论的证据。</h2>
+        </div>
+        <a class="text-link pill-link" href="publications.bib" download>
+          <span data-zh="下载全部 BibTeX (.bib)" data-en="Download all BibTeX (.bib)">下载全部 BibTeX (.bib)</span>
+          <span aria-hidden="true">↓</span>
+        </a>
+      </div>
+
+      <article class="featured-paper">
+        <div class="paper-art" aria-hidden="true">
+          <div class="chip">
+            <span></span><span></span><span></span><span></span>
+          </div>
+          <div class="signal">
+            <svg viewBox="0 0 250 90">
+              <path d="M0 73h29l10-45 10 45h33l10-58 10 58h35l10-36 10 36h34l10-50 10 50h29"/>
+            </svg>
+          </div>
+          <span class="art-label">MEMS ARRAY × PHYSICS-INFORMED DL</span>
+        </div>
+        <div class="featured-copy">
+          <div class="paper-meta">
+            <span class="journal-pill">Advanced Science</span>
+            <time>2026</time>
+            <span class="role-pill" data-zh="共同第一作者 †" data-en="Co-First Author †">共同第一作者 †</span>
+            <span class="latest" data-zh="代表性新作" data-en="Featured paper">代表性新作</span>
+          </div>
+          <h3>
+            <a href="https://doi.org/10.1002/advs.77784" target="_blank" rel="noopener noreferrer">Temperature-Modulated MEMS Gas Sensor Array Enabled by Physics-Informed Deep Learning for Thermal-Runaway Characteristic Gas Discrimination</a>
+          </h3>
+          <p class="authors">Luo Q†, <strong class="author-self">Guo Q†</strong>, Liu R, Li Y, Zhu H, Zhang W, Chen Z, Liu Z, Cheng X</p>
+          <p class="paper-summary" data-zh="将温度调制 MEMS 气体传感阵列与物理信息深度学习相结合，利用非稳态热调制下的动力学响应特征，实现锂电池热失控早期特征气体的高精度辨识。" data-en="Combining temperature-modulated MEMS gas sensor arrays with physics-informed deep learning to extract transient thermo-kinetic signatures for early thermal-runaway gas discrimination.">将温度调制 MEMS 气体传感阵列与物理信息深度学习相结合，利用非稳态热调制下的动力学响应特征，实现锂电池热失控早期特征气体的高精度辨识。</p>
+          <div class="paper-actions">
+            <a class="action-pill primary-link" href="https://doi.org/10.1002/advs.77784" target="_blank" rel="noopener noreferrer">
+              <span data-zh="阅读论文 (DOI)" data-en="Read paper (DOI)">阅读论文 (DOI)</span> <span aria-hidden="true">↗</span>
+            </a>
+            <button type="button" class="action-pill cite" data-cite="luo2026mems" data-zh="查看 BibTeX" data-en="View BibTeX">查看 BibTeX</button>
+            <button type="button" class="action-pill quick-copy" data-copy-cite="luo2026mems" data-zh="复制引用" data-en="Copy BibTeX">复制引用</button>
+          </div>
+        </div>
+      </article>
+
+      <search class="publication-controls" aria-label="论文筛选与搜索">
+        <div class="filter-group" role="group" aria-label="论文研究领域筛选">
+          <button type="button" class="filter active" data-filter="all" aria-pressed="true">
+            <span data-zh="全部论文" data-en="All papers">全部论文</span>
+            <span class="filter-count">5</span>
+          </button>
+          <button type="button" class="filter" data-filter="sensing" aria-pressed="false">
+            <span data-zh="智能传感与物理 AI" data-en="Sensing &amp; Physical AI">智能传感与物理 AI</span>
+            <span class="filter-count">1</span>
+          </button>
+          <button type="button" class="filter" data-filter="clinical" aria-pressed="false">
+            <span data-zh="临床医疗机器学习" data-en="Clinical ML">临床医疗机器学习</span>
+            <span class="filter-count">4</span>
+          </button>
+        </div>
+        <div class="paper-search">
+          <label for="paper-search" class="visually-hidden" data-zh="搜索论文标题、期刊或关键词" data-en="Search paper titles, journals, or keywords">搜索论文标题、期刊或关键词</label>
+          <span class="search-icon" aria-hidden="true">⌕</span>
+          <input id="paper-search" type="search" placeholder="搜索标题、期刊或年份…" data-placeholder-zh="搜索标题、期刊或年份…" data-placeholder-en="Search title, journal, or year…">
+          <kbd class="search-kbd" aria-hidden="true">/</kbd>
+        </div>
+      </search>
+
+      <div class="paper-list" id="paper-list">
+        <article class="paper-row" data-topic="sensing">
+          <time>2026</time>
+          <div class="paper-row-body">
+            <div class="paper-row-meta">
+              <span class="paper-journal">Advanced Science</span>
+              <span class="paper-tag" data-zh="共同一作 †" data-en="Co-First †">共同一作 †</span>
+            </div>
+            <h3><a href="https://doi.org/10.1002/advs.77784" target="_blank" rel="noopener noreferrer">Temperature-Modulated MEMS Gas Sensor Array Enabled by Physics-Informed Deep Learning for Thermal-Runaway Characteristic Gas Discrimination</a></h3>
+            <p>Luo Q†, <strong class="author-self">Guo Q†</strong>, Liu R, Li Y, Zhu H, Zhang W, Chen Z, Liu Z, Cheng X</p>
+            <div class="paper-actions">
+              <a href="https://doi.org/10.1002/advs.77784" target="_blank" rel="noopener noreferrer">DOI: 10.1002/advs.77784 ↗</a>
+              <button type="button" class="cite" data-cite="luo2026mems">BibTeX</button>
+              <button type="button" class="quick-copy" data-copy-cite="luo2026mems" data-zh="复制引用" data-en="Copy">复制引用</button>
+            </div>
+          </div>
+          <span class="pub-number">01</span>
+        </article>
+
+        <article class="paper-row" data-topic="clinical">
+          <time>2026</time>
+          <div class="paper-row-body">
+            <div class="paper-row-meta">
+              <span class="paper-journal">Frontiers in Molecular Biosciences · 13:1746108</span>
+            </div>
+            <h3><a href="https://doi.org/10.3389/fmolb.2026.1746108" target="_blank" rel="noopener noreferrer">Comparison of machine learning models for hemoglobin prediction in patients undergoing maintenance hemodialysis</a></h3>
+            <p>Xie T, Su X, Yun C, Tang X, Zheng X, Dong J, <strong class="author-self">Guo Q</strong>, Zhu S, Tang D, Dai Y, Yin L</p>
+            <div class="paper-actions">
+              <a href="https://doi.org/10.3389/fmolb.2026.1746108" target="_blank" rel="noopener noreferrer">DOI: 10.3389/fmolb.2026.1746108 ↗</a>
+              <button type="button" class="cite" data-cite="xie2026hemoglobin">BibTeX</button>
+              <button type="button" class="quick-copy" data-copy-cite="xie2026hemoglobin" data-zh="复制引用" data-en="Copy">复制引用</button>
+            </div>
+          </div>
+          <span class="pub-number">02</span>
+        </article>
+
+        <article class="paper-row" data-topic="clinical">
+          <time>2025</time>
+          <div class="paper-row-body">
+            <div class="paper-row-meta">
+              <span class="paper-journal">Journal of Medical Systems · 49:112</span>
+              <span class="paper-tag" data-zh="共同一作 †" data-en="Co-First †">共同一作 †</span>
+            </div>
+            <h3><a href="https://doi.org/10.1007/s10916-025-02237-5" target="_blank" rel="noopener noreferrer">Prediction Model of Intradialytic Hypertension in Hemodialysis Patients Based on Machine Learning</a></h3>
+            <p>Wang Y†, Zhou H†, <strong class="author-self">Guo Q†</strong>, Wang K, Luo Y, Luan S, Tang D, Dong S, Yin L, Dai Y</p>
+            <div class="paper-actions">
+              <a href="https://doi.org/10.1007/s10916-025-02237-5" target="_blank" rel="noopener noreferrer">DOI: 10.1007/s10916-025-02237-5 ↗</a>
+              <button type="button" class="cite" data-cite="wang2025hypertension">BibTeX</button>
+              <button type="button" class="quick-copy" data-copy-cite="wang2025hypertension" data-zh="复制引用" data-en="Copy">复制引用</button>
+            </div>
+          </div>
+          <span class="pub-number">03</span>
+        </article>
+
+        <article class="paper-row" data-topic="clinical">
+          <time>2025</time>
+          <div class="paper-row-body">
+            <div class="paper-row-meta">
+              <span class="paper-journal">International Journal of Medical Informatics · 195:105744</span>
+            </div>
+            <h3><a href="https://doi.org/10.1016/j.ijmedinf.2024.105744" target="_blank" rel="noopener noreferrer">Prediction of mortality in hemodialysis patients based on autoencoders</a></h3>
+            <p>Su S, Gao J, Dong J, <strong class="author-self">Guo Q</strong>, Ma H, Luan S, Zheng X, Tao H, Zhou L, Dai Y</p>
+            <div class="paper-actions">
+              <a href="https://doi.org/10.1016/j.ijmedinf.2024.105744" target="_blank" rel="noopener noreferrer">DOI: 10.1016/j.ijmedinf.2024.105744 ↗</a>
+              <button type="button" class="cite" data-cite="su2025mortality">BibTeX</button>
+              <button type="button" class="quick-copy" data-copy-cite="su2025mortality" data-zh="复制引用" data-en="Copy">复制引用</button>
+            </div>
+          </div>
+          <span class="pub-number">04</span>
+        </article>
+
+        <article class="paper-row" data-topic="clinical">
+          <time>2023</time>
+          <div class="paper-row-body">
+            <div class="paper-row-meta">
+              <span class="paper-journal">Computer Methods and Programs in Biomedicine · 240:107698</span>
+            </div>
+            <h3><a href="https://doi.org/10.1016/j.cmpb.2023.107698" target="_blank" rel="noopener noreferrer">Machine learning-based intradialytic hypotension prediction of patients undergoing hemodialysis: A multicenter retrospective study</a></h3>
+            <p>Dong J, Wang K, He J, <strong class="author-self">Guo Q</strong>, Min H, Tang D, Zhang Z, Zhang C, Zheng F, Li Y, et al.</p>
+            <div class="paper-actions">
+              <a href="https://doi.org/10.1016/j.cmpb.2023.107698" target="_blank" rel="noopener noreferrer">DOI: 10.1016/j.cmpb.2023.107698 ↗</a>
+              <button type="button" class="cite" data-cite="dong2023hypotension">BibTeX</button>
+              <button type="button" class="quick-copy" data-copy-cite="dong2023hypotension" data-zh="复制引用" data-en="Copy">复制引用</button>
+            </div>
+          </div>
+          <span class="pub-number">05</span>
+        </article>
+      </div>
+
+      <p id="paper-empty" class="empty" hidden data-zh="没有匹配的论文，请尝试其他关键词或切换上方分类。" data-en="No matching papers found. Try another keyword or switch category above.">没有匹配的论文，请尝试其他关键词或切换上方分类。</p>
+
+      <div class="publication-foot">
+        <span id="paper-count" aria-live="polite">5 篇论文</span>
+        <span data-zh="Guo Q 加粗标识 · † 共同第一作者 · 按发表年份倒序排列" data-en="Guo Q highlighted in bold · † Co-first author · Ordered by publication year">Guo Q 加粗标识 · † 共同第一作者 · 按发表年份倒序排列</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="wrap section">
+    <div class="section-top">
+      <div>
+        <p class="eyebrow">03 / RESEARCH SYSTEMS &amp; OPEN SOURCE</p>
+        <h2 data-zh="从研究问题，到可以运行的系统。" data-en="From research questions to working systems.">从研究问题，到可以运行的系统。</h2>
+      </div>
+      <a class="text-link pill-link" href="https://github.com/ClimbHillTmr?tab=repositories" target="_blank" rel="noopener noreferrer">
+        <span data-zh="浏览 GitHub 全部仓库 (@ClimbHillTmr)" data-en="All GitHub repositories (@ClimbHillTmr)">浏览 GitHub 全部仓库 (@ClimbHillTmr)</span>
+        <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+
+    <div class="project-grid">
+      <article class="project">
+        <div class="project-visual gateway" aria-hidden="true">
+          <span class="terminal-label">ClimbHillTmr / rig-gateway</span>
+          <div class="gateway-flow">
+            <span>AGENT</span><i>↔</i><span>MCP</span><i>↔</i><span>RIG</span>
+          </div>
+          <span class="visual-detail">AUDITABLE REMOTE WORKFLOWS</span>
+        </div>
+        <div class="project-copy">
+          <div class="project-meta">
+            <span class="project-status" data-zh="开源基础设施" data-en="Open-source infrastructure">开源基础设施</span>
+            <span class="repo-slug">github.com/ClimbHillTmr/rig-gateway</span>
+          </div>
+          <h3>rig-gateway</h3>
+          <p data-zh="面向远程科研工作站与实验设备的自托管 MCP 网关，提供分级权限控制、沙箱执行与完整可审计的远程研究工作流。" data-en="A self-hosted MCP gateway for remote research workstations and experimental rigs, offering tiered capability control and auditable workflows.">面向远程科研工作站与实验设备的自托管 MCP 网关，提供分级权限控制、沙箱执行与完整可审计的远程研究工作流。</p>
+          <div class="tags">
+            <span>Python</span>
+            <span>Model Context Protocol</span>
+            <span>Research engineering</span>
+          </div>
+          <div class="project-actions">
+            <a class="project-link" href="https://github.com/ClimbHillTmr/rig-gateway" target="_blank" rel="noopener noreferrer">
+              <span data-zh="访问 GitHub 仓库" data-en="View GitHub repository">访问 GitHub 仓库</span>
+              <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="project-visual lithography" aria-hidden="true">
+          <span class="terminal-label">ClimbHillTmr / SubNano-HIL-MC</span>
+          <svg viewBox="0 0 360 140">
+            <path d="M180 0v34"/>
+            <path d="m180 34-50 91m50-91-20 91m20-91 10 91m-10-91 40 91m-40-91 75 91" stroke-dasharray="3 4"/>
+            <path d="M45 99h270v26H45z"/>
+            <path d="M45 108h270M45 116h270"/>
+            <circle cx="180" cy="34" r="4"/>
+          </svg>
+          <span class="visual-detail">ION TRANSPORT · LITHOGRAPHY</span>
+        </div>
+        <div class="project-copy">
+          <div class="project-meta">
+            <span class="project-status" data-zh="开源物理仿真框架" data-en="Open simulation framework">开源物理仿真框架</span>
+            <span class="repo-slug">github.com/ClimbHillTmr/SubNano-HIL-MC</span>
+          </div>
+          <h3>SubNano-HIL-MC</h3>
+          <p data-zh="面向亚纳米氦离子束光刻的多物理场蒙特卡洛研究框架，定量耦合离子散射、二次电子级联、能量沉积与线边缘粗糙度（LER）。" data-en="A multiphysics Monte Carlo simulation framework for sub-nanometer helium ion lithography, coupling ion scattering, energy deposition, and line-edge roughness.">面向亚纳米氦离子束光刻的多物理场蒙特卡洛研究框架，定量耦合离子散射、二次电子级联、能量沉积与线边缘粗糙度（LER）。</p>
+          <div class="tags">
+            <span>Monte Carlo</span>
+            <span>Helium ion lithography</span>
+            <span>Scientific computing</span>
+          </div>
+          <div class="project-actions">
+            <a class="project-link" href="https://github.com/ClimbHillTmr/SubNano-HIL-MC" target="_blank" rel="noopener noreferrer">
+              <span data-zh="访问 GitHub 仓库" data-en="View GitHub repository">访问 GitHub 仓库</span>
+              <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="project-visual droplet" aria-hidden="true">
+          <span class="terminal-label">SmartDMF · Vision &amp; Planning</span>
+          <div class="droplet-grid">
+            <span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span>
+            <i></i><i></i>
+          </div>
+          <span class="visual-detail">DETECT · SEGMENT · ROUTE</span>
+        </div>
+        <div class="project-copy">
+          <div class="project-meta">
+            <span class="project-status neutral" data-zh="科研软件平台" data-en="Research platform">科研软件平台</span>
+            <span>Digital Microfluidics</span>
+          </div>
+          <h3 data-zh="智能微流控液滴视觉与规划平台" data-en="Intelligent Droplet Vision &amp; Planning Platform">智能微流控液滴视觉与规划平台</h3>
+          <p data-zh="集成实时液滴目标检测、高精度形态分割、体积估计与多液滴防冲突路径规划，连接视觉感知算法与数字微流控闭环控制。" data-en="Integrating real-time droplet detection, morphological segmentation, volume estimation, and collision-free routing for closed-loop digital microfluidics.">集成实时液滴目标检测、高精度形态分割、体积估计与多液滴防冲突路径规划，连接视觉感知算法与数字微流控闭环控制。</p>
+          <div class="tags">
+            <span>YOLO / SAM</span>
+            <span>Morphological analysis</span>
+            <span>Path planning</span>
+          </div>
+          <div class="project-actions">
+            <button type="button" class="project-link" data-project="droplet">
+              <span data-zh="查看项目架构与方法" data-en="Architecture &amp; overview">查看项目架构与方法</span>
+              <span aria-hidden="true">→</span>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="project-visual clinical" aria-hidden="true">
+          <span class="terminal-label">Longitudinal Clinical ML</span>
+          <svg viewBox="0 0 360 140">
+            <path d="M32 75h31l10-12 15 24 15-45 18 64 15-31h40l13-13 14 25 14-45 18 63 15-30h61"/>
+            <g>
+              <circle cx="72" cy="117" r="3.5"/>
+              <circle cx="144" cy="117" r="3.5"/>
+              <circle cx="216" cy="117" r="3.5"/>
+              <circle cx="288" cy="117" r="3.5"/>
+              <path d="M72 117h216"/>
+            </g>
+          </svg>
+          <span class="visual-detail">TEMPORAL CAUSALITY · EXTERNAL VALIDATION</span>
+        </div>
+        <div class="project-copy">
+          <div class="project-meta">
+            <span class="project-status neutral" data-zh="在研课题" data-en="Ongoing research">在研课题</span>
+            <span>Clinical Data Science</span>
+          </div>
+          <h3>Hemodynamic Instability Memory</h3>
+          <p data-zh="在严格遵守患者级划分与时间因果边界的前提下，评估既往已完成透析序列对后续治疗血流动力学不稳定性的增量预测价值。" data-en="Evaluating the incremental predictive value of completed historical dialysis sequences for subsequent hemodynamic instability under strict temporal and patient-level protocols.">在严格遵守患者级划分与时间因果边界的前提下，评估既往已完成透析序列对后续治疗血流动力学不稳定性的增量预测价值。</p>
+          <div class="tags">
+            <span>Longitudinal sequences</span>
+            <span>Protocol guardrails</span>
+            <span>Multicenter cohorts</span>
+          </div>
+          <div class="project-actions">
+            <button type="button" class="project-link" data-project="him">
+              <span data-zh="查看研究设计与评估边界" data-en="Study design &amp; protocol">查看研究设计与评估边界</span>
+              <span aria-hidden="true">→</span>
+            </button>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="about" class="about section">
+    <div class="wrap about-grid">
+      <div>
+        <p class="eyebrow">04 / ABOUT &amp; METHODOLOGY</p>
+        <h2 data-zh="在学科之间，寻找可验证的连接。" data-en="Finding verifiable connections across disciplines.">在学科之间，寻找可验证的连接。</h2>
+        <p class="about-description" data-zh="我的学术训练横跨信息管理、计算统计与电子信息工程。目前在南方科技大学攻读博士学位，关注物理系统与临床纵向数据中的表征学习与泛化边界，致力于把算法转化为可复现、可审计的科研软件与工程系统。" data-en="My academic training spans information systems, computational statistics, and electronic information engineering. Currently a doctoral student at SUSTech, I study representation learning and generalization in physical and clinical systems—turning models into reproducible research software.">我的学术训练横跨信息管理、计算统计与电子信息工程。目前在南方科技大学攻读博士学位，关注物理系统与临床纵向数据中的表征学习与泛化边界，致力于把算法转化为可复现、可审计的科研软件与工程系统。</p>
+        <div class="principles-grid">
+          <div class="principle-card">
+            <strong data-zh="物理先验引导" data-en="Physics-guided">物理先验引导</strong>
+            <span data-zh="将反应动力学、热调制与输运方程融入表征学习。" data-en="Embedding reaction kinetics and transport priors into learning.">将反应动力学、热调制与输运方程融入表征学习。</span>
+          </div>
+          <div class="principle-card">
+            <strong data-zh="严格协议边界" data-en="Strict protocols">严格协议边界</strong>
+            <span data-zh="零患者级泄漏、零未来信息穿越，坚持外部队列验证。" data-en="Zero patient or temporal leakage, verified across cohorts.">零患者级泄漏、零未来信息穿越，坚持外部队列验证。</span>
+          </div>
+          <div class="principle-card">
+            <strong data-zh="开源科研工程" data-en="Open engineering">开源科研工程</strong>
+            <span data-zh="构建轻量、模块化、可复现的仿真与实验工具链。" data-en="Building lightweight, reproducible simulation and lab toolchains.">构建轻量、模块化、可复现的仿真与实验工具链。</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="education" aria-label="Academic timeline">
+        <div>
+          <span class="edu-period">2025 — <span data-zh="至今" data-en="Present">至今</span></span>
+          <h3 data-zh="南方科技大学 (SUSTech)" data-en="Southern University of Science and Technology">南方科技大学 (SUSTech)</h3>
+          <p data-zh="电子信息 · 博士研究生" data-en="Electronic Information · Doctoral Student">电子信息 · 博士研究生</p>
+          <small data-zh="半导体学院（国家卓越工程师学院）" data-en="College of Semiconductors (National Graduate College for Engineers)">半导体学院（国家卓越工程师学院）</small>
+        </div>
+        <div>
+          <span class="edu-period">2018 — 2019</span>
+          <h3>University of York</h3>
+          <p data-zh="统计与计算金融 · 理学硕士 (MSc)" data-en="Statistics &amp; Computational Finance · MSc">统计与计算金融 · 理学硕士 (MSc)</p>
+          <small data-zh="统计推断 · 随机过程 · 数值计算" data-en="Statistical Inference · Stochastic Processes · Numerical Computing">统计推断 · 随机过程 · 数值计算</small>
+        </div>
+        <div>
+          <span class="edu-period">2013 — 2018</span>
+          <h3>University of Liverpool</h3>
+          <p data-zh="信息管理与信息系统 · 理学学士 (BSc)" data-en="Information Management &amp; Information Systems · BSc">信息管理与信息系统 · 理学学士 (BSc)</p>
+          <small data-zh="数据建模 · 软件工程 · 信息系统架构" data-en="Data Modeling · Software Engineering · Information Systems">数据建模 · 软件工程 · 信息系统架构</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap contact" aria-label="GitHub and research contact">
+    <span class="asterisk" aria-hidden="true">✳</span>
+    <h2 data-zh="好问题，值得一起探索。" data-en="Good questions are worth exploring together.">好问题，值得一起探索。</h2>
+    <p data-zh="欢迎通过 GitHub 了解我的开源工具、复现代码，或围绕智能传感、物理建模与临床机器学习交流研究。" data-en="Explore my open-source tools and research code on GitHub, or connect for discussions on intelligent sensing, physical modeling, and clinical machine learning.">欢迎通过 GitHub 了解我的开源工具、复现代码，或围绕智能传感、物理建模与临床机器学习交流研究。</p>
+    <div class="contact-actions">
+      <a class="button primary" href="https://github.com/ClimbHillTmr" target="_blank" rel="noopener noreferrer">
+        <svg class="gh-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.42 7.42 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+        <span data-zh="GitHub 主页 (@ClimbHillTmr)" data-en="GitHub Profile (@ClimbHillTmr)">GitHub 主页 (@ClimbHillTmr)</span>
+        <span aria-hidden="true">↗</span>
+      </a>
+      <a class="button secondary" href="https://github.com/ClimbHillTmr?tab=repositories" target="_blank" rel="noopener noreferrer">
+        <span data-zh="浏览开源代码仓库" data-en="Browse Open Repositories">浏览开源代码仓库</span>
+        <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap site-footer">
+  <a class="footer-brand" href="#home">
+    <span class="asterisk" aria-hidden="true">✳</span>
+    <strong>Qi Guo</strong>
+  </a>
+  <span class="footer-motto" data-zh="保持好奇，尊重证据。" data-en="Stay curious. Follow the evidence.">保持好奇，尊重证据。</span>
+  <div class="footer-links">
+    <a href="https://climbhilltmr.github.io/">climbhilltmr.github.io</a>
+    <span aria-hidden="true">·</span>
+    <a href="https://github.com/ClimbHillTmr" target="_blank" rel="noopener noreferrer">GitHub @ClimbHillTmr ↗</a>
+  </div>
+</footer>
+
+<dialog id="citation-dialog" closedby="any" aria-labelledby="citation-title">
+  <div class="dialog-head">
+    <div>
+      <p class="eyebrow">BIBTEX CITATION</p>
+      <h2 id="citation-title">BibTeX</h2>
+    </div>
+    <button type="button" class="close-dialog" aria-label="关闭">×</button>
+  </div>
+  <textarea id="citation-text" readonly aria-label="BibTeX citation" spellcheck="false"></textarea>
+  <div class="dialog-bottom">
+    <button type="button" id="copy-citation" class="button primary" data-zh="复制 BibTeX 引用" data-en="Copy BibTeX citation">复制 BibTeX 引用</button>
+    <a class="button secondary" href="publications.bib" download data-zh="下载 .bib 文件" data-en="Download .bib file">下载 .bib 文件</a>
+    <span id="copy-status" role="status" aria-live="polite"></span>
+  </div>
+</dialog>
+
+<dialog id="project-dialog" closedby="any" aria-labelledby="project-title">
+  <div class="dialog-head">
+    <div>
+      <p class="eyebrow" id="project-eyebrow">RESEARCH OVERVIEW</p>
+      <h2 id="project-title"></h2>
+    </div>
+    <button type="button" class="close-dialog" aria-label="关闭">×</button>
+  </div>
+  <div id="project-detail"></div>
+</dialog>
+
+<div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>
