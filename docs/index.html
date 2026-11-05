@@ -2,10 +2,107 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Qi Guo · AI 与真实世界</title>
   <meta name="description" content="Qi Guo，南方科技大学电子信息博士生。研究智能传感、物理 AI、半导体工艺与临床机器学习。了解最新论文与研究项目。">
-  <meta name="theme-color" content="#faf9f5">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#faf9f5" id="meta-theme-color">
+  <script>
+    (() => {
+      const TZ_COORDS = {
+        'Asia/Shanghai': [22.54, 114.06],
+        'Asia/Chongqing': [29.56, 106.55],
+        'Asia/Harbin': [45.75, 126.64],
+        'Asia/Urumqi': [43.82, 87.61],
+        'Asia/Hong_Kong': [22.32, 114.17],
+        'Asia/Macau': [22.20, 113.54],
+        'Asia/Taipei': [22.54, 114.06],
+        'Asia/Tokyo': [35.68, 139.77],
+        'Asia/Seoul': [37.57, 126.98],
+        'Asia/Singapore': [1.35, 103.82],
+        'Europe/London': [53.96, -1.08],
+        'Europe/Berlin': [52.52, 13.40],
+        'Europe/Paris': [48.86, 2.35],
+        'Europe/Zurich': [47.37, 8.54],
+        'America/New_York': [40.71, -74.01],
+        'America/Chicago': [41.88, -87.63],
+        'America/Los_Angeles': [34.05, -118.24],
+        'Australia/Sydney': [-33.87, 151.21]
+      };
+      function pad(n) { return String(n).padStart(2, '0'); }
+      function fmtMin(m) {
+        const clamped = ((Math.round(m) % 1440) + 1440) % 1440;
+        return pad(Math.floor(clamped / 60)) + ':' + pad(clamped % 60);
+      }
+      function computeSolar(now) {
+        const tz = (Intl.DateTimeFormat && Intl.DateTimeFormat().resolvedOptions().timeZone) || '';
+        const offsetHours = -now.getTimezoneOffset() / 60;
+        const stdMeridian = offsetHours * 15;
+        let lat = 30.0;
+        let lon = stdMeridian;
+        if (TZ_COORDS[tz]) {
+          lat = TZ_COORDS[tz][0];
+          lon = TZ_COORDS[tz][1];
+        } else if (/^(Australia|Pacific\/Auckland|America\/(Argentina|Sao_Paulo|Santiago)|Africa\/Johannesburg)/.test(tz)) {
+          lat = -30.0;
+        }
+        const start = new Date(now.getFullYear(), 0, 0);
+        const dayOfYear = Math.floor((now - start) / 86400000);
+        const gamma = (2 * Math.PI / 365) * (dayOfYear - 1);
+        const eqTime = 229.18 * (
+          0.000075 +
+          0.001868 * Math.cos(gamma) -
+          0.032077 * Math.sin(gamma) -
+          0.014615 * Math.cos(2 * gamma) -
+          0.040849 * Math.sin(2 * gamma)
+        );
+        const decl =
+          0.006918 -
+          0.399912 * Math.cos(gamma) +
+          0.070257 * Math.sin(gamma) -
+          0.006758 * Math.cos(2 * gamma) +
+          0.000907 * Math.sin(2 * gamma) -
+          0.002697 * Math.cos(3 * gamma) +
+          0.00148 * Math.sin(3 * gamma);
+        const latRad = (lat * Math.PI) / 180;
+        const zenithRad = (90.833 * Math.PI) / 180;
+        const cosH =
+          (Math.cos(zenithRad) / (Math.cos(latRad) * Math.cos(decl))) -
+          Math.tan(latRad) * Math.tan(decl);
+        const clampedCosH = Math.max(-1, Math.min(1, cosH));
+        const hourAngleDeg = (Math.acos(clampedCosH) * 180) / Math.PI;
+        const solarNoonMin = 720 - 4 * (lon - stdMeridian) - eqTime;
+        const sunriseMin = Math.round(solarNoonMin - 4 * hourAngleDeg);
+        const sunsetMin = Math.round(solarNoonMin + 4 * hourAngleDeg);
+        const nowMin = now.getHours() * 60 + now.getMinutes();
+        const isDaytime = nowMin >= sunriseMin && nowMin < sunsetMin;
+        return {
+          sunriseMin,
+          sunsetMin,
+          sunriseStr: fmtMin(sunriseMin),
+          sunsetStr: fmtMin(sunsetMin),
+          nowMin,
+          isDaytime
+        };
+      }
+      window.__COMPUTE_SOLAR__ = computeSolar;
+      const solar = computeSolar(new Date());
+      let stored = 'auto';
+      try {
+        const urlTheme = new URLSearchParams(window.location.search).get('theme');
+        const saved = urlTheme || localStorage.getItem('qi-theme-mode');
+        if (saved === 'light' || saved === 'dark' || saved === 'auto') stored = saved;
+      } catch {}
+      const resolved = stored === 'auto' ? (solar.isDaytime ? 'light' : 'dark') : stored;
+      const root = document.documentElement;
+      root.dataset.theme = resolved;
+      root.dataset.themeMode = stored;
+      const csMeta = document.querySelector('meta[name="color-scheme"]');
+      if (csMeta) csMeta.content = resolved;
+      const tcMeta = document.getElementById('meta-theme-color');
+      if (tcMeta) tcMeta.content = resolved === 'dark' ? '#141614' : '#faf9f5';
+    })();
+  </script>
   <link rel="canonical" href="https://climbhilltmr.github.io/">
   <meta property="og:title" content="Qi Guo · AI for the Physical World">
   <meta property="og:description" content="Research, publications, and projects at the intersection of machine learning, intelligent sensing, semiconductor modeling, and clinical data science.">
@@ -34,6 +131,13 @@
       <a href="#about" data-zh="关于" data-en="About">关于</a>
     </nav>
     <div class="nav-actions">
+      <button id="theme-toggle" type="button" class="theme-switch" aria-label="切换昼夜模式">
+        <span class="theme-icon" id="theme-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M4.93 4.93l1.77 1.77M17.3 17.3l1.77 1.77M2 12h2.5M19.5 12H22M4.93 19.07l1.77-1.77M17.3 6.7l1.77-1.77"/></svg>
+        </span>
+        <span id="theme-label">夜间</span>
+        <span id="theme-badge" class="theme-mode-badge">AUTO</span>
+      </button>
       <button id="language" type="button" class="lang-switch" aria-label="Switch to English">EN</button>
       <a href="https://github.com/ClimbHillTmr" target="_blank" rel="noopener noreferrer" class="github-nav" aria-label="GitHub @ClimbHillTmr">
         <svg class="gh-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.42 7.42 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
@@ -50,7 +154,11 @@
 <main id="main" tabindex="-1">
   <section id="home" class="hero wrap">
     <div class="hero-copy">
-      <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> QI GUO · RESEARCH &amp; ENGINEERING</p>
+      <p class="eyebrow">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span>QI GUO · RESEARCH &amp; ENGINEERING</span>
+        <span id="solar-pill" class="solar-pill" aria-live="polite"></span>
+      </p>
       <h1>
         <span data-zh="让 AI 走进" data-en="Bringing AI into">让 AI 走进</span><br>
         <em data-zh="真实的物理世界。" data-en="the physical world.">真实的物理世界。</em>
@@ -82,16 +190,16 @@
         <svg viewBox="0 0 420 350" fill="none">
           <defs>
             <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
-              <circle cx="1" cy="1" r=".8" fill="#c9c2b2"/>
+              <circle class="grid-dot" cx="1" cy="1" r=".8" fill="#c9c2b2"/>
             </pattern>
             <linearGradient id="surface" x1="85" y1="95" x2="320" y2="285" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#d98a63"/>
-              <stop offset="0.55" stop-color="#b36549"/>
-              <stop offset="1" stop-color="#6e8268"/>
+              <stop style="stop-color: var(--svg-surf-start)" stop-color="#d98a63"/>
+              <stop offset="0.55" style="stop-color: var(--svg-surf-mid)" stop-color="#b36549"/>
+              <stop offset="1" style="stop-color: var(--svg-surf-end)" stop-color="#6e8268"/>
             </linearGradient>
           </defs>
           <rect x="24" y="14" width="372" height="320" rx="6" fill="url(#grid)"/>
-          <g stroke="#bfb7a4" stroke-width=".85">
+          <g class="wireframe-group" stroke="#bfb7a4" stroke-width=".85">
             <path d="m68 205 142 80 142-81-141-79Z"/>
             <path d="m68 220 142 80 142-81M68 235l142 80 142-81"/>
             <path d="M68 205v30m142 50v30m142-111v30"/>
@@ -111,13 +219,13 @@
             <path d="m175 264 14-2 14-6 14-19 14-29 14-12 14 12 14 23 14 21 14 8"/>
             <path d="m184 270 14-2 14-6 14-19 14-29 14-12 14 12 14 23 14 21"/>
           </g>
-          <g stroke="#b36549" stroke-width="1.2">
+          <g class="accent-node" stroke="#b36549" stroke-width="1.2">
             <path d="M134 62v14m-7-7h14m-12-5 10 10m0-10-10 10"/>
             <path d="m264 120 22-34 40-7" stroke-dasharray="3 4"/>
           </g>
-          <circle cx="264" cy="120" r="4.5" fill="#b36549"/>
-          <circle cx="210" cy="285" r="3.5" fill="#6e8268"/>
-          <g fill="#78776a" font-family="Georgia, serif" font-size="9.5" letter-spacing="1.2">
+          <circle class="accent-dot" cx="264" cy="120" r="4.5" fill="#b36549"/>
+          <circle class="sage-dot" cx="210" cy="285" r="3.5" fill="#6e8268"/>
+          <g class="svg-labels" fill="#78776a" font-family="Georgia, serif" font-size="9.5" letter-spacing="1.2">
             <text x="256" y="68">PHYSICAL PRIORS</text>
             <text x="42" y="282">REPRESENTATION</text>
             <text x="272" y="312">VERIFICATION</text>

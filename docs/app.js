@@ -3,12 +3,24 @@
   let language = 'zh';
   let topic = 'all';
   let toastTimer = null;
+  let solarTimer = null;
+  let themeMode = document.documentElement.dataset.themeMode || 'auto';
 
   const $ = (selector) => document.querySelector(selector);
   const $$ = (selector) => [...document.querySelectorAll(selector)];
   const rows = $$('.paper-row');
   const search = $('#paper-search');
   const toast = $('#toast');
+  const themeBtn = $('#theme-toggle');
+  const themeIcon = $('#theme-icon');
+  const themeLabel = $('#theme-label');
+  const themeBadge = $('#theme-badge');
+  const solarPill = $('#solar-pill');
+
+  const SUN_SVG =
+    '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M4.93 4.93l1.77 1.77M17.3 17.3l1.77 1.77M2 12h2.5M19.5 12H22M4.93 19.07l1.77-1.77M17.3 6.7l1.77-1.77"/></svg>';
+  const MOON_SVG =
+    '<svg viewBox="0 0 24 24"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11Z"/></svg>';
 
   const projects = {
     droplet: {
@@ -67,6 +79,132 @@
     }
   };
 
+  function getSolarState(date = new Date()) {
+    if (typeof window.__COMPUTE_SOLAR__ === 'function') {
+      return window.__COMPUTE_SOLAR__(date);
+    }
+    const nowMin = date.getHours() * 60 + date.getMinutes();
+    return {
+      sunriseMin: 390,
+      sunsetMin: 1080,
+      sunriseStr: '06:30',
+      sunsetStr: '18:00',
+      nowMin,
+      isDaytime: nowMin >= 390 && nowMin < 1080
+    };
+  }
+
+  function applyTheme(mode, notify = false) {
+    themeMode = mode;
+    const solar = getSolarState(new Date());
+    const resolved = mode === 'auto' ? (solar.isDaytime ? 'light' : 'dark') : mode;
+    const isDark = resolved === 'dark';
+
+    const root = document.documentElement;
+    root.dataset.theme = resolved;
+    root.dataset.themeMode = mode;
+
+    const csMeta = document.querySelector('meta[name="color-scheme"]');
+    if (csMeta) csMeta.content = resolved;
+
+    const tcMeta = document.getElementById('meta-theme-color');
+    if (tcMeta) tcMeta.content = isDark ? '#141614' : '#faf9f5';
+
+    try {
+      if (mode === 'auto') {
+        localStorage.removeItem('qi-theme-mode');
+      } else {
+        localStorage.setItem('qi-theme-mode', mode);
+      }
+    } catch {}
+
+    if (themeIcon) {
+      themeIcon.innerHTML = isDark ? MOON_SVG : SUN_SVG;
+    }
+
+    if (themeLabel) {
+      themeLabel.textContent =
+        language === 'zh' ? (isDark ? '夜间' : '日间') : isDark ? 'Night' : 'Day';
+    }
+
+    if (themeBadge) {
+      themeBadge.textContent = mode === 'auto' ? 'AUTO' : isDark ? 'NIGHT' : 'DAY';
+    }
+
+    const statusZh =
+      mode === 'auto'
+        ? `自动昼夜 · 今日日出 ${solar.sunriseStr} / 日落 ${solar.sunsetStr}（当前：${isDark ? '夜间模式' : '日间模式'}）`
+        : `手动固定：${isDark ? '夜间模式' : '日间模式'}（点击切换，今日日落 ${solar.sunsetStr}）`;
+    const statusEn =
+      mode === 'auto'
+        ? `Auto Solar · Sunrise ${solar.sunriseStr} / Sunset ${solar.sunsetStr} (Current: ${isDark ? 'Night' : 'Day'})`
+        : `Pinned: ${isDark ? 'Night mode' : 'Day mode'} (Click to switch, Sunset ${solar.sunsetStr})`;
+
+    if (themeBtn) {
+      themeBtn.title = language === 'zh' ? statusZh : statusEn;
+      themeBtn.setAttribute('aria-label', language === 'zh' ? statusZh : statusEn);
+    }
+
+    if (solarPill) {
+      const modeTagZh = mode === 'auto' ? `自动${isDark ? '夜间' : '日间'}` : `固定${isDark ? '夜间' : '日间'}`;
+      const modeTagEn = mode === 'auto' ? `Auto ${isDark ? 'Night' : 'Day'}` : `Pinned ${isDark ? 'Night' : 'Day'}`;
+      solarPill.textContent =
+        language === 'zh'
+          ? `☀ ${solar.sunriseStr} · ☾ ${solar.sunsetStr} · ${modeTagZh}`
+          : `☀ ${solar.sunriseStr} · ☾ ${solar.sunsetStr} · ${modeTagEn}`;
+    }
+
+    if (notify) {
+      const msgZh =
+        mode === 'auto'
+          ? `已开启日出日落自动切换（日出 ${solar.sunriseStr} · 日落 ${solar.sunsetStr}）`
+          : `已切换至${isDark ? '夜间暗色版本' : '日间暖纸版本'}`;
+      const msgEn =
+        mode === 'auto'
+          ? `Auto sunrise/sunset enabled (${solar.sunriseStr} – ${solar.sunsetStr})`
+          : `Switched to ${isDark ? 'Night (Warm Obsidian)' : 'Day (Warm Paper)'} theme`;
+      showToast(language === 'zh' ? msgZh : msgEn);
+    }
+
+    scheduleSolarCheck();
+  }
+
+  function scheduleSolarCheck() {
+    clearTimeout(solarTimer);
+    if (themeMode !== 'auto') return;
+    const now = new Date();
+    const solar = getSolarState(now);
+    let minutesUntilNextChange;
+    if (solar.nowMin < solar.sunriseMin) {
+      minutesUntilNextChange = solar.sunriseMin - solar.nowMin;
+    } else if (solar.nowMin < solar.sunsetMin) {
+      minutesUntilNextChange = solar.sunsetMin - solar.nowMin;
+    } else {
+      minutesUntilNextChange = 1440 - solar.nowMin + solar.sunriseMin;
+    }
+    const delayMs = Math.max(30000, minutesUntilNextChange * 60000 - now.getSeconds() * 1000 + 1500);
+    solarTimer = setTimeout(() => {
+      if (themeMode === 'auto') {
+        applyTheme('auto', false);
+      }
+    }, Math.min(delayMs, 3600000));
+  }
+
+  function cycleThemeMode() {
+    const solar = getSolarState(new Date());
+    const autoResolved = solar.isDaytime ? 'light' : 'dark';
+    const oppositeOfAuto = autoResolved === 'light' ? 'dark' : 'light';
+    let nextMode;
+    if (themeMode === 'auto') {
+      nextMode = oppositeOfAuto;
+    } else if (themeMode === oppositeOfAuto) {
+      nextMode = autoResolved;
+    } else {
+      nextMode = 'auto';
+    }
+    applyTheme(nextMode, true);
+  }
+
   function showToast(message) {
     if (!toast) return;
     toast.textContent = message;
@@ -74,7 +212,7 @@
     clearTimeout(toastTimer);
     toastTimer = setTimeout(() => {
       toast.hidden = true;
-    }, 2400);
+    }, 2600);
   }
 
   function filterPapers() {
@@ -93,8 +231,10 @@
   }
 
   function closeMenu() {
-    $('#nav').classList.remove('open');
-    $('#menu').setAttribute('aria-expanded', 'false');
+    const nav = $('#nav');
+    const menu = $('#menu');
+    if (nav) nav.classList.remove('open');
+    if (menu) menu.setAttribute('aria-expanded', 'false');
   }
 
   function setLanguage(next) {
@@ -112,6 +252,7 @@
     $$('.close-dialog').forEach((el) => el.setAttribute('aria-label', next === 'zh' ? '关闭' : 'Close'));
     $('#copy-status').textContent = '';
     filterPapers();
+    applyTheme(themeMode, false);
   }
 
   async function copyCitationText(key, triggerButton) {
@@ -136,6 +277,23 @@
     }
   }
 
+  if (themeBtn) {
+    themeBtn.addEventListener('click', cycleThemeMode);
+  }
+
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden && themeMode === 'auto') {
+      applyTheme('auto', false);
+    }
+  });
+
+  window.addEventListener('storage', (event) => {
+    if (event.key === 'qi-theme-mode') {
+      const next = event.newValue === 'light' || event.newValue === 'dark' ? event.newValue : 'auto';
+      applyTheme(next, false);
+    }
+  });
+
   $('#language').addEventListener('click', () => setLanguage(language === 'zh' ? 'en' : 'zh'));
 
   $('#menu').addEventListener('click', () => {
@@ -144,6 +302,18 @@
   });
 
   $$('#nav a').forEach((link) => link.addEventListener('click', closeMenu));
+
+  document.addEventListener('click', (event) => {
+    const nav = $('#nav');
+    const menu = $('#menu');
+    if (nav && nav.classList.contains('open') && !nav.contains(event.target) && !menu.contains(event.target)) {
+      closeMenu();
+    }
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 680) closeMenu();
+  });
 
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') closeMenu();

@@ -23,7 +23,7 @@ node --check docs/citations.js
 if [ ! -d .git ]; then git init -b main; fi
 git add -- docs README.md .gitignore deploy.sh
 if ! git diff --cached --quiet; then
-  git commit -m 'Merge profile README and deploy full academic homepage to root GitHub Pages'
+  git commit -m "${COMMIT_MSG:-Add solar day/night auto-switching theme and multi-device responsive adaptation}"
 fi
 
 if ! gh repo view "$FULL_REPO" >/dev/null 2>&1; then
