@@ -23,7 +23,7 @@ node --check docs/citations.js
 if [ ! -d .git ]; then git init -b main; fi
 git add -- docs README.md .gitignore deploy.sh
 if ! git diff --cached --quiet; then
-  git commit -m 'Refine academic homepage design and optimize GitHub Pages root entry URL'
+  git commit -m 'Merge profile README and deploy full academic homepage to root GitHub Pages'
 fi
 
 if ! gh repo view "$FULL_REPO" >/dev/null 2>&1; then
@@ -43,6 +43,9 @@ if gh api "repos/${FULL_REPO}/pages" >/dev/null 2>&1; then
 else
   printf '%s' "$pages_config" | gh api --method POST "repos/${FULL_REPO}/pages" --input -
 fi
+
+# Explicitly trigger a fresh Pages build from /docs so root index.html is always served
+gh api --method POST "repos/${FULL_REPO}/pages/builds" >/dev/null 2>&1 || true
 
 gh repo edit "$FULL_REPO" --homepage "$SITE_URL"
 echo "Source uploaded. GitHub Pages deployment requested for ${FULL_REPO}."
