@@ -1,6 +1,6 @@
 (() => {
   'use strict';
-  let language = 'zh';
+  let language = window.location.hostname.endsWith('.chatgpt.site') ? 'en' : 'zh';
   let topic = 'all';
   let toastTimer = null;
   let solarTimer = null;
