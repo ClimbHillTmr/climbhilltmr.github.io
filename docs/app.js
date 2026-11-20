@@ -15,7 +15,6 @@
   const themeIcon = $('#theme-icon');
   const themeLabel = $('#theme-label');
   const themeBadge = $('#theme-badge');
-  const solarPill = $('#solar-pill');
 
   const SUN_SVG =
     '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M4.93 4.93l1.77 1.77M17.3 17.3l1.77 1.77M2 12h2.5M19.5 12H22M4.93 19.07l1.77-1.77M17.3 6.7l1.77-1.77"/></svg>';
@@ -143,15 +142,6 @@
     if (themeBtn) {
       themeBtn.title = language === 'zh' ? statusZh : statusEn;
       themeBtn.setAttribute('aria-label', language === 'zh' ? statusZh : statusEn);
-    }
-
-    if (solarPill) {
-      const modeTagZh = mode === 'auto' ? `自动${isDark ? '夜间' : '日间'}` : `固定${isDark ? '夜间' : '日间'}`;
-      const modeTagEn = mode === 'auto' ? `Auto ${isDark ? 'Night' : 'Day'}` : `Pinned ${isDark ? 'Night' : 'Day'}`;
-      solarPill.textContent =
-        language === 'zh'
-          ? `☀ ${solar.sunriseStr} · ☾ ${solar.sunsetStr} · ${modeTagZh}`
-          : `☀ ${solar.sunriseStr} · ☾ ${solar.sunsetStr} · ${modeTagEn}`;
     }
 
     if (notify) {

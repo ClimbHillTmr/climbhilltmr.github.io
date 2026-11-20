@@ -538,22 +538,6 @@ nav a.active::after {
   flex-shrink: 0;
 }
 
-.solar-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-family: var(--mono);
-  font-size: 10.5px;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  text-transform: none;
-  padding: 2px 8px;
-  border-radius: 999px;
-  background: var(--surface-subtle);
-  border: 1px solid var(--line);
-  color: var(--ink-secondary);
-}
-
 .hero h1 {
   font-family: var(--serif);
   font-weight: 400;
