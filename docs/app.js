@@ -412,8 +412,9 @@
       (entries) =>
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
+            const sectionId = entry.target.id === 'projects' ? 'experience' : entry.target.id;
             $$('#nav a').forEach((link) =>
-              link.classList.toggle('active', link.hash === `#${entry.target.id}`)
+              link.classList.toggle('active', link.hash === `#${sectionId}`)
             );
           }
         }),
