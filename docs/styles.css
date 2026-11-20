@@ -3,66 +3,69 @@
 :root {
   color-scheme: light dark;
 
-  /* Day Mode — Warm Paper & Editorial Terracotta */
-  --bg: #faf9f5;
-  --bg-alt: #f2f0e8;
-  --surface: #fffefa;
-  --surface-subtle: #f5f3eb;
-  --surface-hover: #eae7dc;
-  --ink: #2c2e28;
-  --ink-secondary: #565a4e;
-  --muted: #6e7364;
-  --accent: #b36549;
-  --accent-hover: #964e35;
-  --accent-soft: #f3e6dc;
-  --accent-soft-hover: #ead5c5;
-  --accent-border: #e2c6b3;
-  --sage: #5f7058;
-  --sage-soft: #e6ebe2;
-  --sage-border: #d3ddd0;
-  --neutral-status: #8c7759;
-  --neutral-dot: #a88f6b;
-  --line: #e4e2d8;
-  --line-strong: #d3d0c2;
-  --header-bg: rgba(250, 249, 245, 0.88);
-  --publications-bg: #f2f0e7;
-  --row-hover: #f7f5ed;
-  --row-doi-bg: #fbf5ef;
-  --author-underline: #cca08d;
-  --timeline-dot: #b4b9a5;
-  --shadow-sm: 0 1px 3px rgba(44, 46, 40, 0.06);
-  --shadow-card: 0 12px 36px rgba(44, 46, 40, 0.05);
-  --shadow-dialog: 0 25px 80px rgba(44, 46, 40, 0.22);
-  --backdrop-bg: rgba(44, 46, 40, 0.36);
-  --toast-bg: #2c2e28;
-  --toast-ink: #faf9f5;
+  /* Shoreline daylight */
+  --bg: #edf3f4;
+  --bg-alt: #dfeaec;
+  --surface: #fbfdfb;
+  --surface-subtle: #e8f0f1;
+  --surface-hover: #d8e8ea;
+  --ink: #19343e;
+  --ink-secondary: #3c565f;
+  --muted: #506872;
+  --accent: #205b6d;
+  --accent-hover: #194753;
+  --accent-ink: #fbfdfb;
+  --accent-soft: #dcebef;
+  --accent-soft-hover: #cde4e6;
+  --accent-border: #abcbd0;
+  --sage: #3e6965;
+  --sage-soft: #deede7;
+  --sage-border: #c2d9d0;
+  --neutral-status: #765e4c;
+  --neutral-dot: #a68b72;
+  --line: #cbdcde;
+  --line-strong: #adbec4;
+  --header-bg: rgba(237, 243, 244, 0.92);
+  --publications-bg: #e3edef;
+  --row-hover: #edf4f2;
+  --row-doi-bg: #e7eff1;
+  --author-underline: #78a3aa;
+  --timeline-dot: #81a3a6;
+  --shadow-sm: 0 1px 4px rgba(25, 52, 62, 0.08);
+  --shadow-card: 0 18px 44px rgba(25, 52, 62, 0.10);
+  --shadow-dialog: 0 25px 80px rgba(25, 52, 62, 0.24);
+  --backdrop-bg: rgba(15, 41, 51, 0.42);
+  --toast-bg: #19343e;
+  --toast-ink: #edf3f4;
 
   /* Hero SVG & Artwork Tokens (Day) */
-  --svg-grid-dot: #c9c2b2;
-  --svg-wireframe: #bfb7a4;
-  --svg-label: #78776a;
-  --svg-surf-start: #d98a63;
-  --svg-surf-mid: #b36549;
-  --svg-surf-end: #6e8268;
+  --visual-top: #f3ede2;
+  --visual-bottom: #c6dfe5;
+  --svg-grid-dot: #98b4ba;
+  --svg-wireframe: #7a99a1;
+  --svg-label: #47616b;
+  --svg-surf-start: #a28469;
+  --svg-surf-mid: #205b6d;
+  --svg-surf-end: #488782;
 
   /* Featured Paper Chip Artwork (Day) */
-  --art-bg: #e8e4d6;
-  --art-dot: #b5ad96;
-  --art-label: #6f6b58;
-  --chip-bg: #d8d3c4;
-  --chip-border: #bfb7a1;
-  --chip-shadow: rgba(198, 191, 171, 0.4);
-  --chip-pad-border: #e4ddcb;
-  --chip-pad-outline: #aba185;
-  --chip-trace: #f2e0c5;
-  --signal-stroke: #9e6d50;
+  --art-bg: #dce8e9;
+  --art-dot: #9bb2b8;
+  --art-label: #47616b;
+  --chip-bg: #cad9dd;
+  --chip-border: #a5b9be;
+  --chip-shadow: rgba(92, 127, 138, 0.24);
+  --chip-pad-border: #e1eaeb;
+  --chip-pad-outline: #97aab0;
+  --chip-trace: #f3ede2;
+  --signal-stroke: #3c797d;
 
   /* Project Schematic Headers (Day) */
-  --gateway-bg: #e6eae2;
-  --gateway-ink: #546651;
-  --gateway-node-bg: #f2f5ef;
-  --gateway-node-border: #b5c2ae;
-  --gateway-arrow: #84967f;
+  --gateway-bg: #dfedeb;
+  --gateway-ink: #395e64;
+  --gateway-node-bg: #f3f8f7;
+  --gateway-node-border: #9fbdc0;
+  --gateway-arrow: #54777e;
 
   /* Typography & Layout */
   --serif: 'Noto Serif SC', Georgia, 'Songti SC', serif;
@@ -72,128 +75,134 @@
   accent-color: var(--accent);
 }
 
-/* Night Mode — Warm Obsidian Editorial Palette */
+/* Deep-water night palette */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     color-scheme: dark;
-    --bg: #141614;
-    --bg-alt: #1a1d19;
-    --surface: #1f231e;
-    --surface-subtle: #262b25;
-    --surface-hover: #2e342c;
-    --ink: #ece8df;
-    --ink-secondary: #b9b6ab;
-    --muted: #8e9285;
-    --accent: #d98262;
-    --accent-hover: #eb9a7c;
-    --accent-soft: #31231d;
-    --accent-soft-hover: #3f2c24;
-    --accent-border: #5a3c2f;
-    --sage: #8aa481;
-    --sage-soft: #202a1f;
-    --sage-border: #364734;
-    --neutral-status: #bfa37c;
-    --neutral-dot: #c7ab82;
-    --line: #2a2f29;
-    --line-strong: #394037;
-    --header-bg: rgba(20, 22, 20, 0.88);
-    --publications-bg: #171a16;
-    --row-hover: #1d211c;
-    --row-doi-bg: #271f1b;
-    --author-underline: #9e624a;
-    --timeline-dot: #5b6354;
-    --shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.35);
-    --shadow-card: 0 14px 40px rgba(0, 0, 0, 0.42);
-    --shadow-dialog: 0 28px 90px rgba(0, 0, 0, 0.68);
-    --backdrop-bg: rgba(8, 10, 8, 0.68);
-    --toast-bg: #ece8df;
-    --toast-ink: #141614;
+    --bg: #11262e;
+    --bg-alt: #142d37;
+    --surface: #1a3540;
+    --surface-subtle: #1e3c46;
+    --surface-hover: #284a55;
+    --ink: #ecf5f4;
+    --ink-secondary: #c0d5d9;
+    --muted: #9cbbc2;
+    --accent: #8bcac8;
+    --accent-hover: #a5dcd9;
+    --accent-ink: #11262e;
+    --accent-soft: #1d4049;
+    --accent-soft-hover: #28535c;
+    --accent-border: #38616b;
+    --sage: #a8cfc1;
+    --sage-soft: #22443e;
+    --sage-border: #3c635d;
+    --neutral-status: #d2b495;
+    --neutral-dot: #d2b495;
+    --line: #2b4854;
+    --line-strong: #42616d;
+    --header-bg: rgba(17, 38, 46, 0.92);
+    --publications-bg: #142c36;
+    --row-hover: #1b3a45;
+    --row-doi-bg: #203d47;
+    --author-underline: #689998;
+    --timeline-dot: #5b858e;
+    --shadow-sm: 0 1px 4px rgba(4, 16, 22, 0.35);
+    --shadow-card: 0 18px 44px rgba(4, 16, 22, 0.42);
+    --shadow-dialog: 0 28px 90px rgba(4, 16, 22, 0.68);
+    --backdrop-bg: rgba(6, 19, 25, 0.7);
+    --toast-bg: #ecf5f4;
+    --toast-ink: #11262e;
 
-    --svg-grid-dot: #3a4037;
-    --svg-wireframe: #4c5347;
-    --svg-label: #979b8e;
-    --svg-surf-start: #e59670;
-    --svg-surf-mid: #d98262;
-    --svg-surf-end: #88a380;
+    --visual-top: #2f4b55;
+    --visual-bottom: #142d3a;
+    --svg-grid-dot: #496674;
+    --svg-wireframe: #668691;
+    --svg-label: #abc4ca;
+    --svg-surf-start: #d6b59a;
+    --svg-surf-mid: #86c5c9;
+    --svg-surf-end: #7fb6aa;
 
-    --art-bg: #22251f;
-    --art-dot: #4b5044;
-    --art-label: #9a9789;
-    --chip-bg: #2e3129;
-    --chip-border: #4a4e42;
-    --chip-shadow: rgba(0, 0, 0, 0.38);
-    --chip-pad-border: #3a3e34;
-    --chip-pad-outline: #5c6152;
-    --chip-trace: rgba(235, 214, 185, 0.25);
-    --signal-stroke: #d98262;
+    --art-bg: #1c3742;
+    --art-dot: #416470;
+    --art-label: #abc4ca;
+    --chip-bg: #29444f;
+    --chip-border: #466875;
+    --chip-shadow: rgba(4, 16, 22, 0.42);
+    --chip-pad-border: #3a5963;
+    --chip-pad-outline: #5c808a;
+    --chip-trace: #80969a;
+    --signal-stroke: #8bcac8;
 
-    --gateway-bg: #1c241c;
-    --gateway-ink: #9cb596;
-    --gateway-node-bg: #242f24;
-    --gateway-node-border: #3e523d;
-    --gateway-arrow: #789173;
+    --gateway-bg: #1b3943;
+    --gateway-ink: #bddbdc;
+    --gateway-node-bg: #294b54;
+    --gateway-node-border: #527881;
+    --gateway-arrow: #82b2b8;
   }
 }
 
 :root:has(> head > meta[name="color-scheme"][content="dark"]),
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --bg: #141614;
-  --bg-alt: #1a1d19;
-  --surface: #1f231e;
-  --surface-subtle: #262b25;
-  --surface-hover: #2e342c;
-  --ink: #ece8df;
-  --ink-secondary: #b9b6ab;
-  --muted: #8e9285;
-  --accent: #d98262;
-  --accent-hover: #eb9a7c;
-  --accent-soft: #31231d;
-  --accent-soft-hover: #3f2c24;
-  --accent-border: #5a3c2f;
-  --sage: #8aa481;
-  --sage-soft: #202a1f;
-  --sage-border: #364734;
-  --neutral-status: #bfa37c;
-  --neutral-dot: #c7ab82;
-  --line: #2a2f29;
-  --line-strong: #394037;
-  --header-bg: rgba(20, 22, 20, 0.88);
-  --publications-bg: #171a16;
-  --row-hover: #1d211c;
-  --row-doi-bg: #271f1b;
-  --author-underline: #9e624a;
-  --timeline-dot: #5b6354;
-  --shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.35);
-  --shadow-card: 0 14px 40px rgba(0, 0, 0, 0.42);
-  --shadow-dialog: 0 28px 90px rgba(0, 0, 0, 0.68);
-  --backdrop-bg: rgba(8, 10, 8, 0.68);
-  --toast-bg: #ece8df;
-  --toast-ink: #141614;
+  --bg: #11262e;
+  --bg-alt: #142d37;
+  --surface: #1a3540;
+  --surface-subtle: #1e3c46;
+  --surface-hover: #284a55;
+  --ink: #ecf5f4;
+  --ink-secondary: #c0d5d9;
+  --muted: #9cbbc2;
+  --accent: #8bcac8;
+  --accent-hover: #a5dcd9;
+  --accent-ink: #11262e;
+  --accent-soft: #1d4049;
+  --accent-soft-hover: #28535c;
+  --accent-border: #38616b;
+  --sage: #a8cfc1;
+  --sage-soft: #22443e;
+  --sage-border: #3c635d;
+  --neutral-status: #d2b495;
+  --neutral-dot: #d2b495;
+  --line: #2b4854;
+  --line-strong: #42616d;
+  --header-bg: rgba(17, 38, 46, 0.92);
+  --publications-bg: #142c36;
+  --row-hover: #1b3a45;
+  --row-doi-bg: #203d47;
+  --author-underline: #689998;
+  --timeline-dot: #5b858e;
+  --shadow-sm: 0 1px 4px rgba(4, 16, 22, 0.35);
+  --shadow-card: 0 18px 44px rgba(4, 16, 22, 0.42);
+  --shadow-dialog: 0 28px 90px rgba(4, 16, 22, 0.68);
+  --backdrop-bg: rgba(6, 19, 25, 0.7);
+  --toast-bg: #ecf5f4;
+  --toast-ink: #11262e;
 
-  --svg-grid-dot: #3a4037;
-  --svg-wireframe: #4c5347;
-  --svg-label: #979b8e;
-  --svg-surf-start: #e59670;
-  --svg-surf-mid: #d98262;
-  --svg-surf-end: #88a380;
+  --visual-top: #2f4b55;
+  --visual-bottom: #142d3a;
+  --svg-grid-dot: #496674;
+  --svg-wireframe: #668691;
+  --svg-label: #abc4ca;
+  --svg-surf-start: #d6b59a;
+  --svg-surf-mid: #86c5c9;
+  --svg-surf-end: #7fb6aa;
 
-  --art-bg: #22251f;
-  --art-dot: #4b5044;
-  --art-label: #9a9789;
-  --chip-bg: #2e3129;
-  --chip-border: #4a4e42;
-  --chip-shadow: rgba(0, 0, 0, 0.38);
-  --chip-pad-border: #3a3e34;
-  --chip-pad-outline: #5c6152;
-  --chip-trace: rgba(235, 214, 185, 0.25);
-  --signal-stroke: #d98262;
+  --art-bg: #1c3742;
+  --art-dot: #416470;
+  --art-label: #abc4ca;
+  --chip-bg: #29444f;
+  --chip-border: #466875;
+  --chip-shadow: rgba(4, 16, 22, 0.42);
+  --chip-pad-border: #3a5963;
+  --chip-pad-outline: #5c808a;
+  --chip-trace: #80969a;
+  --signal-stroke: #8bcac8;
 
-  --gateway-bg: #1c241c;
-  --gateway-ink: #9cb596;
-  --gateway-node-bg: #242f24;
-  --gateway-node-border: #3e523d;
-  --gateway-arrow: #789173;
+  --gateway-bg: #1b3943;
+  --gateway-ink: #bddbdc;
+  --gateway-node-bg: #294b54;
+  --gateway-node-border: #527881;
+  --gateway-arrow: #82b2b8;
 }
 
 :root:has(> head > meta[name="color-scheme"][content="light"]),
@@ -328,17 +337,16 @@ a:hover {
   color: var(--ink);
 }
 
-.asterisk {
-  font-size: 30px;
-  font-family: Georgia, serif;
-  color: var(--accent);
-  font-weight: 400;
-  line-height: 1;
+.brand-mark {
+  display: block;
+  inline-size: 34px;
+  block-size: auto;
+  flex-shrink: 0;
 }
 
 .wordmark strong {
-  font: 500 22px Georgia, serif;
-  letter-spacing: -0.01em;
+  font: 700 22px/1 var(--sans);
+  letter-spacing: -0.045em;
 }
 
 .wordmark-tag {
@@ -539,11 +547,11 @@ nav a.active::after {
 }
 
 .hero h1 {
-  font-family: var(--serif);
-  font-weight: 400;
-  font-size: clamp(2rem, 3vw + 0.95rem, 3.2rem);
-  line-height: 1.46;
-  letter-spacing: 0.01em;
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: clamp(2.15rem, 3.7vw + 0.65rem, 3.75rem);
+  line-height: 1.18;
+  letter-spacing: -0.045em;
   margin: 0 0 22px;
   color: var(--ink);
 }
@@ -592,23 +600,14 @@ nav a.active::after {
 
 .button.primary {
   background: var(--accent);
-  color: #fffaf4;
+  color: var(--accent-ink);
   border-color: var(--accent);
-}
-
-:root[data-theme="dark"] .button.primary {
-  color: #161412;
-  font-weight: 600;
 }
 
 .button.primary:hover {
   background: var(--accent-hover);
   border-color: var(--accent-hover);
-  color: #ffffff;
-}
-
-:root[data-theme="dark"] .button.primary:hover {
-  color: #141210;
+  color: var(--accent-ink);
 }
 
 .button.secondary {
@@ -658,9 +657,9 @@ nav a.active::after {
 }
 
 .visual-card {
-  background: var(--surface-subtle);
-  border: 1px solid var(--line);
-  border-radius: 12px;
+  background: linear-gradient(155deg, var(--visual-top), var(--visual-bottom));
+  border: 1px solid var(--line-strong);
+  border-radius: 18px;
   padding: 18px 20px 16px;
   box-shadow: var(--shadow-card);
   transition: background-color 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
@@ -676,16 +675,6 @@ nav a.active::after {
   letter-spacing: 0.14em;
   color: var(--muted);
   margin-bottom: 6px;
-}
-
-.visual-badge {
-  font-family: var(--mono);
-  font-size: 10px;
-  padding: 2px 7px;
-  border-radius: 4px;
-  background: var(--surface-hover);
-  color: var(--ink-secondary);
-  flex-shrink: 0;
 }
 
 .visual-card > svg {
@@ -968,10 +957,10 @@ nav a.active::after {
   background: repeating-linear-gradient(90deg, transparent, transparent 4px, var(--chip-trace) 4px, var(--chip-trace) 6px);
 }
 
-.chip > span:nth-child(1) { background-color: #b88763; }
-.chip > span:nth-child(2) { background-color: #9a9e7d; }
-.chip > span:nth-child(3) { background-color: #b5a377; }
-.chip > span:nth-child(4) { background-color: #899e94; }
+.chip > span:nth-child(1) { background-color: #aa896e; }
+.chip > span:nth-child(2) { background-color: #67918f; }
+.chip > span:nth-child(3) { background-color: #c2a88f; }
+.chip > span:nth-child(4) { background-color: #7b9ba9; }
 
 .signal {
   position: absolute;
@@ -1108,11 +1097,7 @@ nav a.active::after {
 .action-pill.primary-link:hover {
   background: var(--accent);
   border-color: var(--accent);
-  color: #fff;
-}
-
-:root[data-theme="dark"] .action-pill.primary-link:hover {
-  color: #161412;
+  color: var(--accent-ink);
 }
 
 .publication-controls {
@@ -1648,10 +1633,9 @@ nav a.active::after {
   padding-bottom: clamp(56px, 6vw, 76px);
 }
 
-.contact .asterisk {
-  font-size: 34px;
-  display: block;
-  margin-bottom: 18px;
+.contact .brand-mark {
+  inline-size: 44px;
+  margin: 0 auto 18px;
 }
 
 .contact h2 {
@@ -1691,13 +1675,13 @@ nav a.active::after {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font: 500 16px Georgia, serif;
+  font: 700 16px/1.2 var(--sans);
   color: var(--ink);
   white-space: nowrap;
 }
 
-.footer-brand .asterisk {
-  font-size: 20px;
+.footer-brand .brand-mark {
+  inline-size: 22px;
 }
 
 .footer-motto {
@@ -2070,8 +2054,8 @@ dialog::backdrop {
   .wordmark strong {
     font-size: 19px;
   }
-  .asterisk {
-    font-size: 25px;
+  .brand-mark {
+    inline-size: 30px;
   }
   .theme-switch {
     padding: 6px 8px;

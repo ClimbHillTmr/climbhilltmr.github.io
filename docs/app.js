@@ -107,7 +107,7 @@
     if (csMeta) csMeta.content = resolved;
 
     const tcMeta = document.getElementById('meta-theme-color');
-    if (tcMeta) tcMeta.content = isDark ? '#141614' : '#faf9f5';
+    if (tcMeta) tcMeta.content = isDark ? '#11262e' : '#edf3f4';
 
     try {
       if (mode === 'auto') {
@@ -148,11 +148,11 @@
       const msgZh =
         mode === 'auto'
           ? `已开启日出日落自动切换（日出 ${solar.sunriseStr} · 日落 ${solar.sunsetStr}）`
-          : `已切换至${isDark ? '夜间暗色版本' : '日间暖纸版本'}`;
+          : `已切换到${isDark ? '夜间' : '日间'}模式`;
       const msgEn =
         mode === 'auto'
           ? `Auto sunrise/sunset enabled (${solar.sunriseStr} – ${solar.sunsetStr})`
-          : `Switched to ${isDark ? 'Night (Warm Obsidian)' : 'Day (Warm Paper)'} theme`;
+          : `Switched to ${isDark ? 'night' : 'day'} theme`;
       showToast(language === 'zh' ? msgZh : msgEn);
     }
 

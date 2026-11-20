@@ -1,13 +1,13 @@
 <div align="center">
 
-# ✳ Qi Guo
+# <img src="docs/brand-mark.png" width="28" alt=""> Qi Guo
 
 **Machine Learning for Physical & Clinical Systems · 让 AI 走进真实的物理世界**
 
 *Doctoral Student in Electronic Information @ SUSTech · MSc Statistics & Computational Finance @ York*
 
-[![Academic Homepage](https://img.shields.io/badge/✳_Academic_Homepage-climbhilltmr.github.io-b36549?style=flat-square)](https://climbhilltmr.github.io/)
-[![Publications](https://img.shields.io/badge/Publications-Selected_Papers_&_BibTeX-5f7058?style=flat-square)](https://climbhilltmr.github.io/#publications)
+[![Academic Homepage](https://img.shields.io/badge/Academic_Homepage-climbhilltmr.github.io-205b6d?style=flat-square)](https://climbhilltmr.github.io/)
+[![Publications](https://img.shields.io/badge/Publications-Selected_Papers_&_BibTeX-3e6965?style=flat-square)](https://climbhilltmr.github.io/#publications)
 [Project Experience · 项目经历](https://climbhilltmr.github.io/#experience) · [Open-Source Tools & Libraries · 开源工具与库](https://climbhilltmr.github.io/#projects)
 
 </div>
