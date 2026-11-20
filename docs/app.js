@@ -26,7 +26,7 @@
     droplet: {
       eyebrow: 'DIGITAL MICROFLUIDICS · VISION & PLANNING',
       zh: {
-        title: '智能微流控液滴视觉与规划平台',
+        title: '液滴微流控芯片实验平台',
         paragraphs: [
           '面向数字微流控（DMF）自动化实验，构建集液滴视觉感知、形态定量分析与多液滴协同路径规划于一体的科研软件平台。'
         ],
@@ -35,10 +35,10 @@
           '形态与体积估计：基于 OpenCV 亚像素轮廓分析，追踪液滴形变、接触角变化与分裂/合并状态。',
           '防冲突路径规划：在离散电极网格上引入时空约束搜索，生成多液滴并行调度的无碰撞控制序列。'
         ],
-        note: '当前状态：实验室研究与软件系统持续迭代中。'
+        note: '我担任软件与算法团队负责人，完成了首期软件交付。'
       },
       en: {
-        title: 'Intelligent Droplet Vision & Planning Platform',
+        title: 'Droplet Microfluidic Chip Platform',
         paragraphs: [
           'A research software platform integrating visual perception, quantitative morphological analysis, and multi-droplet path planning for automated digital microfluidic (DMF) experiments.'
         ],
@@ -47,13 +47,13 @@
           'Morphological metrology: Uses OpenCV contour analysis to track droplet deformation, splitting, merging, and volume.',
           'Collision-free routing: Spatio-temporal grid search for safe, parallel multi-droplet scheduling.'
         ],
-        note: 'Status: Ongoing research platform and experimental software integration.'
+        note: 'I led the software and algorithms team and delivered the first phase of the software.'
       }
     },
     him: {
       eyebrow: 'CLINICAL MACHINE LEARNING · LONGITUDINAL MODELING',
       zh: {
-        title: 'Hemodynamic Instability Memory',
+        title: '透析血流动力学不稳定性研究',
         paragraphs: [
           '围绕维持性血液透析中的血流动力学不稳定性（如透析中低血压 IDH），系统评估患者既往已完成的纵向治疗历史是否提供超越当次基线状态的增量预测信息。'
         ],
@@ -65,7 +65,7 @@
         note: '学术声明：本研究聚焦于纵向预测信息的统计评价，不据此推断生理记忆机制或直接因果效应。'
       },
       en: {
-        title: 'Hemodynamic Instability Memory',
+        title: 'Hemodialysis Instability Modeling',
         paragraphs: [
           'Systematically evaluating whether completed longitudinal dialysis histories provide incremental predictive information for subsequent intradialytic hemodynamic instability beyond the latest pre-treatment baseline.'
         ],

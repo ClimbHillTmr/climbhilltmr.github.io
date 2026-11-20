@@ -64,23 +64,6 @@
   --gateway-node-border: #b5c2ae;
   --gateway-arrow: #84967f;
 
-  --litho-bg: #eee6db;
-  --litho-ink: #8c6448;
-  --litho-stroke: #b08562;
-
-  --droplet-bg: #e4eae6;
-  --droplet-ink: #53786e;
-  --droplet-cell-bg: #edf3ef;
-  --droplet-cell-border: #b2c5b8;
-  --droplet-one-bg: #809e93;
-  --droplet-two-bg: #a5b38e;
-  --droplet-ring: #d5e3db;
-
-  --clinical-bg: #efe5df;
-  --clinical-ink: #9b6e56;
-  --clinical-stroke: #b0826b;
-  --clinical-axis: #c4ad9d;
-
   /* Typography & Layout */
   --serif: 'Noto Serif SC', Georgia, 'Songti SC', serif;
   --sans: 'DM Sans', -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif;
@@ -149,23 +132,6 @@
     --gateway-node-bg: #242f24;
     --gateway-node-border: #3e523d;
     --gateway-arrow: #789173;
-
-    --litho-bg: #25201a;
-    --litho-ink: #d4a37e;
-    --litho-stroke: #cc966e;
-
-    --droplet-bg: #1a2422;
-    --droplet-ink: #8eb5aa;
-    --droplet-cell-bg: #22302d;
-    --droplet-cell-border: #38524b;
-    --droplet-one-bg: #5e877b;
-    --droplet-two-bg: #7d9167;
-    --droplet-ring: #2d403b;
-
-    --clinical-bg: #261e1b;
-    --clinical-ink: #d69e85;
-    --clinical-stroke: #cc8f74;
-    --clinical-axis: #6e584d;
   }
 }
 
@@ -228,23 +194,6 @@
   --gateway-node-bg: #242f24;
   --gateway-node-border: #3e523d;
   --gateway-arrow: #789173;
-
-  --litho-bg: #25201a;
-  --litho-ink: #d4a37e;
-  --litho-stroke: #cc966e;
-
-  --droplet-bg: #1a2422;
-  --droplet-ink: #8eb5aa;
-  --droplet-cell-bg: #22302d;
-  --droplet-cell-border: #38524b;
-  --droplet-one-bg: #5e877b;
-  --droplet-two-bg: #7d9167;
-  --droplet-ring: #2d403b;
-
-  --clinical-bg: #261e1b;
-  --clinical-ink: #d69e85;
-  --clinical-stroke: #cc8f74;
-  --clinical-axis: #6e584d;
 }
 
 :root:has(> head > meta[name="color-scheme"][content="light"]),
@@ -1396,7 +1345,31 @@ nav a.active::after {
   margin-top: 16px;
 }
 
-/* 03 Projects Grid */
+/* Project experience and open-source tools */
+.project-group-title {
+  font: 600 1.15rem/1.45 var(--sans);
+  margin: 0 0 16px;
+}
+
+.project-grid + .project-group-title {
+  margin-top: 36px;
+}
+
+.project-role {
+  color: var(--ink);
+  font-size: .875rem;
+  margin-bottom: 8px;
+}
+
+.cv-project p {
+  font-size: 1rem;
+  margin-bottom: 0;
+}
+
+.cv-project .project-actions {
+  margin-top: 16px;
+}
+
 .project-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -1479,85 +1452,6 @@ nav a.active::after {
   color: var(--gateway-arrow);
 }
 
-.lithography {
-  background: var(--litho-bg);
-  color: var(--litho-ink);
-}
-
-.lithography svg {
-  display: block;
-  position: absolute;
-  inset: 28px 40px auto;
-  width: calc(100% - 80px);
-  height: 132px;
-  fill: none;
-  stroke: var(--litho-stroke);
-  stroke-width: 1.15;
-}
-
-.droplet {
-  background: var(--droplet-bg);
-  color: var(--droplet-ink);
-}
-
-.droplet-grid {
-  position: absolute;
-  left: 50%;
-  top: 52%;
-  transform: translate(-50%, -50%) rotate(-8deg);
-  display: grid;
-  grid-template-columns: repeat(4, 34px);
-  gap: 5px;
-}
-
-.droplet-grid span {
-  height: 28px;
-  border: 1px solid var(--droplet-cell-border);
-  border-radius: 3px;
-  background: var(--droplet-cell-bg);
-}
-
-.droplet-grid i {
-  position: absolute;
-  width: 28px;
-  height: 28px;
-  left: 42px;
-  top: 29px;
-  background: var(--droplet-one-bg);
-  border: 3px solid var(--droplet-ring);
-  border-radius: 48% 45% 50% 42%;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.16);
-}
-
-.droplet-grid i:last-child {
-  width: 23px;
-  height: 23px;
-  left: 118px;
-  top: 3px;
-  background: var(--droplet-two-bg);
-}
-
-.clinical {
-  background: var(--clinical-bg);
-  color: var(--clinical-ink);
-}
-
-.clinical svg {
-  position: absolute;
-  top: 25px;
-  left: 45px;
-  width: calc(100% - 90px);
-  height: 125px;
-  stroke: var(--clinical-stroke);
-  stroke-width: 1.25;
-  fill: none;
-}
-
-.clinical svg > g {
-  stroke: var(--clinical-axis);
-  stroke-width: 0.85;
-}
-
 .project-copy {
   padding: 24px 26px;
   display: flex;
@@ -1615,7 +1509,7 @@ nav a.active::after {
   white-space: nowrap;
 }
 
-.project h3 {
+.project :is(h3, h4) {
   font-size: 17.5px;
   font-weight: 600;
   line-height: 1.45;
@@ -2222,11 +2116,6 @@ dialog::backdrop {
   .gateway-flow span {
     padding: 9px 11px;
     font-size: 10px;
-  }
-  .lithography svg,
-  .clinical svg {
-    left: 20px;
-    width: calc(100% - 40px);
   }
   .paper-row {
     grid-template-columns: minmax(0, 1fr);

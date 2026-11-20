@@ -127,7 +127,8 @@
     <nav id="nav" aria-label="Primary">
       <a href="#research" data-zh="研究方向" data-en="Research">研究方向</a>
       <a href="#publications" data-zh="发表论文" data-en="Publications">发表论文</a>
-      <a href="#projects" data-zh="研究项目" data-en="Projects">研究项目</a>
+      <a href="#experience" data-zh="项目经历" data-en="Project Experience">项目经历</a>
+      <a href="#projects" data-zh="工具与库" data-en="Tools &amp; Libraries">工具与库</a>
       <a href="#about" data-zh="关于" data-en="About">关于</a>
     </nav>
     <div class="nav-actions">
@@ -169,8 +170,8 @@
           <span data-zh="阅读最新论文" data-en="Explore publications">阅读最新论文</span>
           <span aria-hidden="true">↓</span>
         </a>
-        <a class="button secondary" href="#projects">
-          <span data-zh="浏览研究与开源项目" data-en="Research &amp; open-source projects">浏览研究与开源项目</span>
+        <a class="button secondary" href="#experience">
+          <span data-zh="查看项目经历" data-en="View project experience">查看项目经历</span>
           <span aria-hidden="true">↓</span>
         </a>
       </div>
@@ -278,12 +279,7 @@
           <span class="item-index">02</span>
         </div>
         <h3 data-zh="半导体工艺与物理建模" data-en="Semiconductors &amp; physical modeling">半导体工艺与物理建模</h3>
-        <p data-zh="探索先进光刻、刻蚀与纳米压印中的多物理场蒙特卡洛模拟、统计建模与逆向优化，连接工艺参数与可解释的微观物理过程。" data-en="Exploring multiphysics Monte Carlo simulation, statistical modeling, and optimization for lithography, etching, and nanoimprint processes.">探索先进光刻、刻蚀与纳米压印中的多物理场蒙特卡洛模拟、统计建模与逆向优化，连接工艺参数与可解释的微观物理过程。</p>
-        <div class="tags">
-          <span>Helium ion lithography</span>
-          <span>Monte Carlo</span>
-          <span>Process optimization</span>
-        </div>
+        <p data-zh="研究如何用物理建模、数值计算与统计方法分析半导体制造过程。" data-en="I use physical models, numerical computing, and statistical methods to study semiconductor manufacturing.">研究如何用物理建模、数值计算与统计方法分析半导体制造过程。</p>
       </article>
 
       <article class="research-item">
@@ -484,18 +480,115 @@
     </div>
   </section>
 
-  <section id="projects" class="wrap section">
+  <section id="experience" class="wrap section">
     <div class="section-top">
       <div>
-        <p class="eyebrow">03 / RESEARCH SYSTEMS &amp; OPEN SOURCE</p>
-        <h2 data-zh="从研究问题，到可以运行的系统。" data-en="From research questions to working systems.">从研究问题，到可以运行的系统。</h2>
+        <h2 data-zh="项目经历" data-en="Project Experience">项目经历</h2>
       </div>
-      <a class="text-link pill-link" href="https://github.com/ClimbHillTmr?tab=repositories" target="_blank" rel="noopener noreferrer">
-        <span data-zh="浏览 GitHub 全部仓库 (@ClimbHillTmr)" data-en="All GitHub repositories (@ClimbHillTmr)">浏览 GitHub 全部仓库 (@ClimbHillTmr)</span>
-        <span aria-hidden="true">↗</span>
-      </a>
     </div>
 
+    <h3 id="engineering-projects" class="project-group-title" data-zh="工程项目" data-en="Engineering Projects">工程项目</h3>
+    <div class="project-grid" aria-labelledby="engineering-projects">
+      <article class="project cv-project">
+        <div class="project-copy">
+          <div class="project-meta">
+            <span data-zh="研发中" data-en="In development">研发中</span>
+          </div>
+          <h4 data-zh="半导体设备软件研发" data-en="Semiconductor Equipment Software">半导体设备软件研发</h4>
+          <strong class="project-role" data-zh="控制软件与算法研发" data-en="Control software and algorithm development">控制软件与算法研发</strong>
+          <p data-zh="参与设备软件设计与系统集成，负责控制软件和算法开发。" data-en="Contributed to equipment software design and systems integration through control software and algorithm development.">参与设备软件设计与系统集成，负责控制软件和算法开发。</p>
+        </div>
+      </article>
+
+      <article class="project cv-project">
+        <div class="project-copy">
+          <div class="project-meta">
+            <span data-zh="首期软件已交付" data-en="First software phase delivered">首期软件已交付</span>
+          </div>
+          <h4 data-zh="液滴微流控芯片实验平台" data-en="Droplet Microfluidic Chip Platform">液滴微流控芯片实验平台</h4>
+          <strong class="project-role" data-zh="软件与算法团队负责人" data-en="Software and algorithms lead">软件与算法团队负责人</strong>
+          <p data-zh="把实验流程转化为控制逻辑和数据规范，开发液滴识别、跟踪和路径规划，集成 YOLO 检测、SAM 分割及前端操作。" data-en="Translated lab workflows into control logic and data standards. Developed droplet tracking and route planning, and integrated YOLO detection and SAM segmentation into the interface.">把实验流程转化为控制逻辑和数据规范，开发液滴识别、跟踪和路径规划，集成 YOLO 检测、SAM 分割及前端操作。</p>
+          <div class="project-actions">
+            <button type="button" class="project-link" data-project="droplet">
+              <span data-zh="查看项目实现" data-en="See implementation">查看项目实现</span>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="project cv-project">
+        <div class="project-copy">
+          <div class="project-meta">
+            <span data-zh="已上线" data-en="Launched">已上线</span>
+          </div>
+          <h4 data-zh="家庭健康管理平台" data-en="Home Health Management Platform">家庭健康管理平台</h4>
+          <strong class="project-role" data-zh="项目负责人" data-en="Project lead">项目负责人</strong>
+          <p data-zh="与医疗团队定义健康指标、病史和个人目标的管理流程，设计设备与多源健康数据接入。平台随配套硬件上线。" data-en="Worked with medical teams to define workflows for health metrics, medical history, and personal goals. Designed data intake from connected devices and other sources. The platform launched with its companion hardware.">与医疗团队定义健康指标、病史和个人目标的管理流程，设计设备与多源健康数据接入。平台随配套硬件上线。</p>
+        </div>
+      </article>
+
+      <article class="project cv-project">
+        <div class="project-copy">
+          <div class="project-meta">
+            <span data-zh="已部署" data-en="Deployed">已部署</span>
+          </div>
+          <h4 data-zh="血液透析临床管理系统" data-en="Hemodialysis Management System">血液透析临床管理系统</h4>
+          <strong class="project-role" data-zh="软件与算法团队负责人" data-en="Software and algorithms lead">软件与算法团队负责人</strong>
+          <p data-zh="和医师一起把临床需求转化为透析参数记录与监测功能，开发并集成并发症风险预测，为风险评估提供辅助信息。" data-en="Worked with physicians to turn clinical needs into tools for recording and monitoring dialysis parameters. Developed and integrated complication risk models to support risk assessment.">和医师一起把临床需求转化为透析参数记录与监测功能，开发并集成并发症风险预测，为风险评估提供辅助信息。</p>
+        </div>
+      </article>
+    </div>
+
+    <h3 id="research-projects" class="project-group-title" data-zh="研究项目" data-en="Research Projects">研究项目</h3>
+    <div class="project-grid" aria-labelledby="research-projects">
+      <article class="project cv-project">
+        <div class="project-copy">
+          <div class="project-meta">
+            <span data-zh="研究与软件工具" data-en="Research and software tools">研究与软件工具</span>
+          </div>
+          <h4 data-zh="电子鼻与 MEMS 气体传感器分析" data-en="Electronic Nose and MEMS Gas Sensor Analysis">电子鼻与 MEMS 气体传感器分析</h4>
+          <strong class="project-role" data-zh="数据处理与算法研究" data-en="Data processing and algorithm research">数据处理与算法研究</strong>
+          <p data-zh="建立从原始传感器文件到统一数据集的质控与建模流程，开发气体分类和浓度预测工具，用按天和批次划分检验漂移与跨批次泛化。" data-en="Built a pipeline to standardize and check raw sensor data, developed gas classification and concentration prediction tools, and used day- and batch-based splits to study drift and generalization.">建立从原始传感器文件到统一数据集的质控与建模流程，开发气体分类和浓度预测工具，用按天和批次划分检验漂移与跨批次泛化。</p>
+        </div>
+      </article>
+
+      <article class="project cv-project">
+        <div class="project-copy">
+          <div class="project-meta">
+            <span data-zh="研究原型" data-en="Research prototype">研究原型</span>
+          </div>
+          <h4 data-zh="半导体工艺建模与优化" data-en="Semiconductor Process Modeling and Optimization">半导体工艺建模与优化</h4>
+          <strong class="project-role" data-zh="数值建模与算法开发" data-en="Numerical modeling and algorithm development">数值建模与算法开发</strong>
+          <p data-zh="开展数值建模与优化方法研究，开发用于工艺分析的研究原型。" data-en="Developed research prototypes for numerical modeling and optimization in process analysis.">开展数值建模与优化方法研究，开发用于工艺分析的研究原型。</p>
+        </div>
+      </article>
+
+      <article class="project cv-project">
+        <div class="project-copy">
+          <div class="project-meta">
+            <span data-zh="在研课题" data-en="Ongoing research">在研课题</span>
+          </div>
+          <h4 data-zh="透析血流动力学不稳定性研究" data-en="Hemodialysis Instability Modeling">透析血流动力学不稳定性研究</h4>
+          <strong class="project-role" data-zh="纵向临床建模" data-en="Longitudinal clinical modeling">纵向临床建模</strong>
+          <p data-zh="评估既往已完成透析序列能否在当次治疗前的基线信息之外，增进对后续血流动力学不稳定性的预测。" data-en="Evaluates whether completed dialysis sessions improve prediction of subsequent hemodynamic instability beyond the baseline information available before treatment.">评估既往已完成透析序列能否在当次治疗前的基线信息之外，增进对后续血流动力学不稳定性的预测。</p>
+          <div class="project-actions">
+            <button type="button" class="project-link" data-project="him">
+              <span data-zh="查看研究设计" data-en="See study design">查看研究设计</span>
+            </button>
+          </div>
+        </div>
+      </article>
+    </div>
+
+  </section>
+
+  <section id="projects" class="wrap section">
+    <div class="section-top">
+      <h2 data-zh="开源工具与库" data-en="Open-Source Tools &amp; Libraries">开源工具与库</h2>
+      <a class="text-link pill-link" href="https://github.com/ClimbHillTmr?tab=repositories" target="_blank" rel="noopener noreferrer">
+        <span data-zh="浏览 GitHub 仓库" data-en="Browse GitHub repositories">浏览 GitHub 仓库</span>
+      </a>
+    </div>
     <div class="project-grid">
       <article class="project">
         <div class="project-visual gateway" aria-hidden="true">
@@ -525,107 +618,6 @@
           </div>
         </div>
       </article>
-
-      <article class="project">
-        <div class="project-visual lithography" aria-hidden="true">
-          <span class="terminal-label">ClimbHillTmr / SubNano-HIL-MC</span>
-          <svg viewBox="0 0 360 140">
-            <path d="M180 0v34"/>
-            <path d="m180 34-50 91m50-91-20 91m20-91 10 91m-10-91 40 91m-40-91 75 91" stroke-dasharray="3 4"/>
-            <path d="M45 99h270v26H45z"/>
-            <path d="M45 108h270M45 116h270"/>
-            <circle cx="180" cy="34" r="4"/>
-          </svg>
-          <span class="visual-detail">ION TRANSPORT · LITHOGRAPHY</span>
-        </div>
-        <div class="project-copy">
-          <div class="project-meta">
-            <span class="project-status" data-zh="开源物理仿真框架" data-en="Open simulation framework">开源物理仿真框架</span>
-            <span class="repo-slug">github.com/ClimbHillTmr/SubNano-HIL-MC</span>
-          </div>
-          <h3>SubNano-HIL-MC</h3>
-          <p data-zh="面向亚纳米氦离子束光刻的多物理场蒙特卡洛研究框架，定量耦合离子散射、二次电子级联、能量沉积与线边缘粗糙度（LER）。" data-en="A multiphysics Monte Carlo simulation framework for sub-nanometer helium ion lithography, coupling ion scattering, energy deposition, and line-edge roughness.">面向亚纳米氦离子束光刻的多物理场蒙特卡洛研究框架，定量耦合离子散射、二次电子级联、能量沉积与线边缘粗糙度（LER）。</p>
-          <div class="tags">
-            <span>Monte Carlo</span>
-            <span>Helium ion lithography</span>
-            <span>Scientific computing</span>
-          </div>
-          <div class="project-actions">
-            <a class="project-link" href="https://github.com/ClimbHillTmr/SubNano-HIL-MC" target="_blank" rel="noopener noreferrer">
-              <span data-zh="访问 GitHub 仓库" data-en="View GitHub repository">访问 GitHub 仓库</span>
-              <span aria-hidden="true">↗</span>
-            </a>
-          </div>
-        </div>
-      </article>
-
-      <article class="project">
-        <div class="project-visual droplet" aria-hidden="true">
-          <span class="terminal-label">SmartDMF · Vision &amp; Planning</span>
-          <div class="droplet-grid">
-            <span></span><span></span><span></span><span></span>
-            <span></span><span></span><span></span><span></span>
-            <span></span><span></span><span></span><span></span>
-            <i></i><i></i>
-          </div>
-          <span class="visual-detail">DETECT · SEGMENT · ROUTE</span>
-        </div>
-        <div class="project-copy">
-          <div class="project-meta">
-            <span class="project-status neutral" data-zh="科研软件平台" data-en="Research platform">科研软件平台</span>
-            <span>Digital Microfluidics</span>
-          </div>
-          <h3 data-zh="智能微流控液滴视觉与规划平台" data-en="Intelligent Droplet Vision &amp; Planning Platform">智能微流控液滴视觉与规划平台</h3>
-          <p data-zh="集成实时液滴目标检测、高精度形态分割、体积估计与多液滴防冲突路径规划，连接视觉感知算法与数字微流控闭环控制。" data-en="Integrating real-time droplet detection, morphological segmentation, volume estimation, and collision-free routing for closed-loop digital microfluidics.">集成实时液滴目标检测、高精度形态分割、体积估计与多液滴防冲突路径规划，连接视觉感知算法与数字微流控闭环控制。</p>
-          <div class="tags">
-            <span>YOLO / SAM</span>
-            <span>Morphological analysis</span>
-            <span>Path planning</span>
-          </div>
-          <div class="project-actions">
-            <button type="button" class="project-link" data-project="droplet">
-              <span data-zh="查看项目架构与方法" data-en="Architecture &amp; overview">查看项目架构与方法</span>
-              <span aria-hidden="true">→</span>
-            </button>
-          </div>
-        </div>
-      </article>
-
-      <article class="project">
-        <div class="project-visual clinical" aria-hidden="true">
-          <span class="terminal-label">Longitudinal Clinical ML</span>
-          <svg viewBox="0 0 360 140">
-            <path d="M32 75h31l10-12 15 24 15-45 18 64 15-31h40l13-13 14 25 14-45 18 63 15-30h61"/>
-            <g>
-              <circle cx="72" cy="117" r="3.5"/>
-              <circle cx="144" cy="117" r="3.5"/>
-              <circle cx="216" cy="117" r="3.5"/>
-              <circle cx="288" cy="117" r="3.5"/>
-              <path d="M72 117h216"/>
-            </g>
-          </svg>
-          <span class="visual-detail">TEMPORAL CAUSALITY · EXTERNAL VALIDATION</span>
-        </div>
-        <div class="project-copy">
-          <div class="project-meta">
-            <span class="project-status neutral" data-zh="在研课题" data-en="Ongoing research">在研课题</span>
-            <span>Clinical Data Science</span>
-          </div>
-          <h3>Hemodynamic Instability Memory</h3>
-          <p data-zh="在严格遵守患者级划分与时间因果边界的前提下，评估既往已完成透析序列对后续治疗血流动力学不稳定性的增量预测价值。" data-en="Evaluating the incremental predictive value of completed historical dialysis sequences for subsequent hemodynamic instability under strict temporal and patient-level protocols.">在严格遵守患者级划分与时间因果边界的前提下，评估既往已完成透析序列对后续治疗血流动力学不稳定性的增量预测价值。</p>
-          <div class="tags">
-            <span>Longitudinal sequences</span>
-            <span>Protocol guardrails</span>
-            <span>Multicenter cohorts</span>
-          </div>
-          <div class="project-actions">
-            <button type="button" class="project-link" data-project="him">
-              <span data-zh="查看研究设计与评估边界" data-en="Study design &amp; protocol">查看研究设计与评估边界</span>
-              <span aria-hidden="true">→</span>
-            </button>
-          </div>
-        </div>
-      </article>
     </div>
   </section>
 
@@ -634,7 +626,7 @@
       <div>
         <p class="eyebrow">04 / ABOUT &amp; METHODOLOGY</p>
         <h2 data-zh="在学科之间，寻找可验证的连接。" data-en="Finding verifiable connections across disciplines.">在学科之间，寻找可验证的连接。</h2>
-        <p class="about-description" data-zh="我的学术训练横跨信息管理、计算统计与电子信息工程。目前在南方科技大学攻读博士学位，关注物理系统与临床纵向数据中的表征学习与泛化边界，致力于把算法转化为可复现、可审计的科研软件与工程系统。" data-en="My academic training spans information systems, computational statistics, and electronic information engineering. Currently a doctoral student at SUSTech, I study representation learning and generalization in physical and clinical systems—turning models into reproducible research software.">我的学术训练横跨信息管理、计算统计与电子信息工程。目前在南方科技大学攻读博士学位，关注物理系统与临床纵向数据中的表征学习与泛化边界，致力于把算法转化为可复现、可审计的科研软件与工程系统。</p>
+        <p class="about-description" data-zh="我在南方科技大学攻读电子信息博士，具有统计与计算金融背景。我做过实验设备软件、微流控实验平台、家庭健康产品和血液透析管理系统，承担过算法开发、系统集成和软件交付。" data-en="I am a doctoral student in Electronic Information at SUSTech with a background in statistics and computational finance. My work spans lab equipment software, microfluidic platforms, home health products, and hemodialysis management, with responsibilities in algorithm development, systems integration, and software delivery.">我在南方科技大学攻读电子信息博士，具有统计与计算金融背景。我做过实验设备软件、微流控实验平台、家庭健康产品和血液透析管理系统，承担过算法开发、系统集成和软件交付。</p>
         <div class="principles-grid">
           <div class="principle-card">
             <strong data-zh="物理先验引导" data-en="Physics-guided">物理先验引导</strong>
@@ -642,7 +634,7 @@
           </div>
           <div class="principle-card">
             <strong data-zh="严格协议边界" data-en="Strict protocols">严格协议边界</strong>
-            <span data-zh="零患者级泄漏、零未来信息穿越，坚持外部队列验证。" data-en="Zero patient or temporal leakage, verified across cohorts.">零患者级泄漏、零未来信息穿越，坚持外部队列验证。</span>
+            <span data-zh="按患者划分数据，遵守时间边界，并在条件允许时进行外部验证。" data-en="Split data by patient, respect prediction-time boundaries, and use external validation where feasible.">按患者划分数据，遵守时间边界，并在条件允许时进行外部验证。</span>
           </div>
           <div class="principle-card">
             <strong data-zh="开源科研工程" data-en="Open engineering">开源科研工程</strong>
